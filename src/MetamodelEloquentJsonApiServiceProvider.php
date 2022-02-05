@@ -10,7 +10,7 @@ use BonsaiCms\Metamodel\Models\Relationship;
 use BonsaiCms\MetamodelEloquentJsonApi\Observers\EntityObserver;
 use BonsaiCms\MetamodelEloquentJsonApi\Observers\AttributeObserver;
 use BonsaiCms\MetamodelEloquentJsonApi\Observers\RelationshipObserver;
-use BonsaiCms\MetamodelEloquentJsonApi\Contacts\JsonApiManagerContract;
+use BonsaiCms\MetamodelEloquentJsonApi\Contracts\JsonApiManagerContract;
 
 class MetamodelEloquentJsonApiServiceProvider extends ServiceProvider
 {

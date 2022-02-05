@@ -3,7 +3,7 @@
 namespace BonsaiCms\MetamodelEloquentJsonApi\Observers;
 
 use BonsaiCms\Metamodel\Models\Relationship;
-use BonsaiCms\MetamodelEloquentJsonApi\Contacts\JsonApiManagerContract;
+use BonsaiCms\MetamodelEloquentJsonApi\Contracts\JsonApiManagerContract;
 
 class RelationshipObserver
 {

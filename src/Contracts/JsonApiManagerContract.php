@@ -1,6 +1,6 @@
 <?php
 
-namespace BonsaiCms\MetamodelEloquentJsonApi\Contacts;
+namespace BonsaiCms\MetamodelEloquentJsonApi\Contracts;
 
 interface JsonApiManagerContract
 {
