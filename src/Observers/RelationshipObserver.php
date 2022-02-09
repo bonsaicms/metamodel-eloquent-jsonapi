@@ -2,6 +2,7 @@
 
 namespace BonsaiCms\MetamodelEloquentJsonApi\Observers;
 
+use Illuminate\Support\Facades\Config;
 use BonsaiCms\Metamodel\Models\Relationship;
 use BonsaiCms\MetamodelEloquentJsonApi\Contracts\JsonApiManagerContract;
 
@@ -19,9 +20,15 @@ class RelationshipObserver
      */
     public function created(Relationship $relationship)
     {
-        // TODO
-//        $this->manager->regenerateModel($relationship->leftEntity);
-//        $this->manager->regenerateModel($relationship->rightEntity);
+        if (Config::get('bonsaicms-metamodel-eloquent-jsonapi.observeModels.relationship.schema.'.__FUNCTION__)) {
+            $this->manager->regenerateSchema($relationship->leftEntity);
+            $this->manager->regenerateSchema($relationship->rightEntity);
+        }
+
+        if (Config::get('bonsaicms-metamodel-eloquent-jsonapi.observeModels.relationship.request.'.__FUNCTION__)) {
+            $this->manager->regenerateRequest($relationship->leftEntity);
+            $this->manager->regenerateRequest($relationship->rightEntity);
+        }
     }
 
     /**
@@ -32,9 +39,15 @@ class RelationshipObserver
      */
     public function updated(Relationship $relationship)
     {
-        // TODO
-//        $this->manager->regenerateModel($relationship->leftEntity);
-//        $this->manager->regenerateModel($relationship->rightEntity);
+        if (Config::get('bonsaicms-metamodel-eloquent-jsonapi.observeModels.relationship.schema.'.__FUNCTION__)) {
+            $this->manager->regenerateSchema($relationship->leftEntity);
+            $this->manager->regenerateSchema($relationship->rightEntity);
+        }
+
+        if (Config::get('bonsaicms-metamodel-eloquent-jsonapi.observeModels.relationship.request.'.__FUNCTION__)) {
+            $this->manager->regenerateRequest($relationship->leftEntity);
+            $this->manager->regenerateRequest($relationship->rightEntity);
+        }
     }
 
     /**
@@ -45,8 +58,14 @@ class RelationshipObserver
      */
     public function deleted(Relationship $relationship)
     {
-        // TODO
-//        $this->manager->regenerateModel($relationship->leftEntity);
-//        $this->manager->regenerateModel($relationship->rightEntity);
+        if (Config::get('bonsaicms-metamodel-eloquent-jsonapi.observeModels.relationship.schema.'.__FUNCTION__)) {
+            $this->manager->regenerateSchema($relationship->leftEntity);
+            $this->manager->regenerateSchema($relationship->rightEntity);
+        }
+
+        if (Config::get('bonsaicms-metamodel-eloquent-jsonapi.observeModels.relationship.request.'.__FUNCTION__)) {
+            $this->manager->regenerateRequest($relationship->leftEntity);
+            $this->manager->regenerateRequest($relationship->rightEntity);
+        }
     }
 }

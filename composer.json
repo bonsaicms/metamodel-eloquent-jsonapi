@@ -17,8 +17,10 @@
     "require": {
         "php": "^8.0",
         "laravel/framework": "^8.0",
+        "laravel-json-api/laravel": "^1.1",
         "bonsaicms/metamodel": "dev-master",
-        "laravel-json-api/laravel": "^1.1"
+        "bonsaicms/support": "dev-master",
+        "bonsaicms/metamodel-eloquent": "dev-master"
     },
     "require-dev": {
         "orchestra/testbench": "^6.22",

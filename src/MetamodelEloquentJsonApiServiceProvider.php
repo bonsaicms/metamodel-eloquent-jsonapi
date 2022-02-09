@@ -40,9 +40,6 @@ class MetamodelEloquentJsonApiServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // Load routes
-        $this->loadRoutesFrom(__DIR__.'/../routes/api.php');
-
         // Publish config
         $this->publishes([
             __DIR__.'/../config/bonsaicms-metamodel-eloquent-jsonapi.php' => $this->app->configPath('bonsaicms-metamodel-eloquent-jsonapi.php'),
@@ -50,19 +47,19 @@ class MetamodelEloquentJsonApiServiceProvider extends ServiceProvider
 
         // Publish stubs
         $this->publishes([
-            __DIR__.'/../resources/stubs/' => $this->app->resourcePath('stubs/metamodel-eloquent-jsonapi/'),
+            __DIR__.'/../resources/stubs/' => $this->app->resourcePath('stubs/bonsaicms/metamodel-eloquent-jsonapi/'),
         ], 'bonsaicms-metamodel-eloquent-jsonapi-stubs');
 
         // Observe models
-        if (Config::get('bonsaicms-metamodel-eloquent-jsonapi.observeModels.entity')) {
+        if (Config::get('bonsaicms-metamodel-eloquent-jsonapi.observeModels.entity.enabled')) {
             Entity::observe(EntityObserver::class);
         }
 
-        if (Config::get('bonsaicms-metamodel-eloquent-jsonapi.observeModels.attribute')) {
+        if (Config::get('bonsaicms-metamodel-eloquent-jsonapi.observeModels.attribute.enabled')) {
             Attribute::observe(AttributeObserver::class);
         }
 
-        if (Config::get('bonsaicms-metamodel-eloquent-jsonapi.observeModels.relationship')) {
+        if (Config::get('bonsaicms-metamodel-eloquent-jsonapi.observeModels.relationship.enabled')) {
             Relationship::observe(RelationshipObserver::class);
         }
     }

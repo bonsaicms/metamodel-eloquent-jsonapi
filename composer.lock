@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6cf112011073e64c8a2d271ea0942df5",
+    "content-hash": "b1709522918b16142fb8dd4232dc364c",
     "packages": [
         {
             "name": "bonsaicms/metamodel",
@@ -12,7 +12,7 @@
             "dist": {
                 "type": "path",
                 "url": "../metamodel",
-                "reference": "df9e3ca2e2576578a6824c9658b62c65c715df92"
+                "reference": "f40c0f608c4d835edd10ae1c4ea233530d66b668"
             },
             "require": {
                 "laravel/framework": "^8.0",
@@ -41,6 +41,104 @@
                 "bonsaicms",
                 "laravel",
                 "metamodel"
+            ],
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
+            "name": "bonsaicms/metamodel-eloquent",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "../metamodel-eloquent",
+                "reference": "3a18826024efa024c48aa516f563e6e9a0a2edae"
+            },
+            "require": {
+                "bonsaicms/metamodel": "dev-master",
+                "bonsaicms/support": "dev-master",
+                "laravel/framework": "^8.0",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^6.22",
+                "pestphp/pest": "^1.21",
+                "pestphp/pest-plugin-laravel": "^1.1",
+                "phpstan/extension-installer": "^1.1",
+                "phpstan/phpstan-deprecation-rules": "^1.0",
+                "phpstan/phpstan-phpunit": "^1.0",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "BonsaiCms\\MetamodelEloquent\\MetamodelEloquentServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "BonsaiCms\\MetamodelEloquent\\": "src"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "BonsaiCms\\MetamodelEloquent\\Tests\\": "tests"
+                }
+            },
+            "scripts": {
+                "analyse": [
+                    "vendor/bin/phpstan analyse"
+                ],
+                "test": [
+                    "vendor/bin/pest"
+                ],
+                "test-coverage": [
+                    "vendor/bin/pest coverage"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Metamodel Eloquent for Bonsai CMS",
+            "homepage": "https://github.com/bonsaicms/metamodel-eloquent",
+            "keywords": [
+                "bonsaicms",
+                "laravel",
+                "metamodel-eloquent"
+            ],
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
+            "name": "bonsaicms/support",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "../support",
+                "reference": "bc6e90bf9653536d4c059df5429e51e22e91fa58"
+            },
+            "require": {
+                "laravel/framework": "^8.0",
+                "php": "^8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "BonsaiCms\\Support\\": "src"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Bonsai CMS Support Package",
+            "homepage": "https://github.com/bonsaicms/support",
+            "keywords": [
+                "bonsaicms",
+                "bonsaicms-support",
+                "laravel"
             ],
             "transport-options": {
                 "relative": true
@@ -9077,7 +9175,9 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "bonsaicms/metamodel": 20
+        "bonsaicms/metamodel": 20,
+        "bonsaicms/support": 20,
+        "bonsaicms/metamodel-eloquent": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

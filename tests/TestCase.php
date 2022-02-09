@@ -48,16 +48,75 @@ class TestCase extends Orchestra
             'generatedTablePrefix' => 'pre_gen_',
             'generatedTableSuffix' => '_suf_gen',
         ]);
-        config()->set('jsonapi', [
-            'servers' => [
-                'testServerName' => \BonsaiCms\MetamodelEloquentJsonApi\Server::class,
-            ],
-        ]);
         config()->set('bonsaicms-metamodel-jsonapi', [
             'server' => 'testServerName',
             'authorizable' => false,
             'baseUri' => '/api/testUrlPrefix',
             'routesConfig' => [],
         ]);
+        config()->set('bonsaicms-metamodel-eloquent', [
+            'bind' => [
+                'modelManager' => true,
+            ],
+            'observeModels' => [
+                'entity' => true,
+                'attribute' => true,
+                'relationship' => true,
+            ],
+            'generate' => [
+                'folder' => __DIR__.'/../vendor/orchestra/testbench-core/laravel/app/Models',
+                'modelFileSuffix' => '.generated.php',
+                'namespace' => 'TestApp\\Models',
+                'parentModel' => 'Some\\Namespace\\ParentModel',
+            ],
+        ]);
+        config()->set('bonsaicms-metamodel-eloquent-jsonapi.generate', [
+            'schema' => [
+                'folder' => app_path('JsonApi/TestApi'),
+                'namespace' => app()->getNamespace().'JsonApi\\TestApi',
+                'parentModel' => \Testing\My\Custom\AbstractSchema::class,
+                'fileSuffix' => 'Schema.generated.php',
+                'classSuffix' => 'CustomSchemaClassSuffix',
+            ],
+            'request' => [
+                'folder' => app_path('JsonApi/TestApi'),
+                'namespace' => app()->getNamespace().'JsonApi\\TestApi',
+                'parentModel' => \Testing\My\Custom\AbstractRequest::class,
+                'fileSuffix' => 'Request.generated.php',
+                'classSuffix' => 'CustomRequestClassSuffix',
+            ],
+        ]);
+    }
+
+    /**
+     * This method is called before each test.
+     */
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->deleteGeneratedFiles();
+    }
+
+    /**
+     * This method is called after each test.
+     */
+    protected function tearDown(): void
+    {
+        parent::tearDown();
+
+        $this->deleteGeneratedFiles();
+    }
+
+    protected function deleteGeneratedFiles()
+    {
+        // TODO: delete whole directory ?
+        $files = glob(__DIR__.'/../vendor/orchestra/testbench-core/laravel/app/JsonApi/TestApi/*.generated.php');
+
+        foreach ($files as $file) {
+            if(is_file($file)) {
+                unlink($file);
+            }
+        }
     }
 }

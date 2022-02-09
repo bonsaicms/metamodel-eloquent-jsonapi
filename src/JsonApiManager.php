@@ -6,5 +6,6 @@ use BonsaiCms\MetamodelEloquentJsonApi\Contracts\JsonApiManagerContract;
 
 class JsonApiManager implements JsonApiManagerContract
 {
-    // TODO
+    use Traits\WorksWithSchema;
+    use Traits\WorksWithRequest;
 }

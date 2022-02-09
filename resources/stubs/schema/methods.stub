@@ -1,0 +1,3 @@
+{{ fieldsMethod }}
+{{ filtersMethod }}
+{{ paginationMethod }}

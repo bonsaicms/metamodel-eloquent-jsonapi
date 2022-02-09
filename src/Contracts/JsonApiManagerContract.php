@@ -2,18 +2,47 @@
 
 namespace BonsaiCms\MetamodelEloquentJsonApi\Contracts;
 
+use BonsaiCms\Metamodel\Models\Entity;
+use BonsaiCms\MetamodelEloquentJsonApi\Exceptions\SchemaAlreadyExistsException;
+
 interface JsonApiManagerContract
 {
-    // TODO
-//    function deleteModel(Entity $entity): self;
-//
-//    function regenerateModel(Entity $entity): self;
-//
-//    function generateModel(Entity $entity): self;
-//
-//    function modelExists(Entity $entity): bool;
-//
-//    function getModelFilePath(Entity $entity): string;
-//
-//    function getModelContents(Entity $entity): string;
+    /*
+     * Schema
+     */
+
+    function deleteSchema(Entity $entity): self;
+
+    function regenerateSchema(Entity $entity): self;
+
+    /**
+     * @throws SchemaAlreadyExistsException
+     */
+    function generateSchema(Entity $entity): self;
+
+    function schemaExists(Entity $entity): bool;
+
+    function getSchemaDirectoryPath(Entity $entity): string;
+
+    function getSchemaFilePath(Entity $entity): string;
+
+    function getSchemaContents(Entity $entity): string;
+
+    /*
+     * Request
+     */
+
+    function deleteRequest(Entity $entity): self;
+
+    function regenerateRequest(Entity $entity): self;
+
+    function generateRequest(Entity $entity): self;
+
+    function requestExists(Entity $entity): bool;
+
+    function getRequestDirectoryPath(Entity $entity): string;
+
+    function getRequestFilePath(Entity $entity): string;
+
+    function getRequestContents(Entity $entity): string;
 }

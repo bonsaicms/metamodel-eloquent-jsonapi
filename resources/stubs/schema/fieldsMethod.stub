@@ -1,0 +1,14 @@
+    /**
+     * Get the resource fields.
+     *
+     * @return array
+     */
+    public function fields(): array
+    {
+        return [
+            ID::make(),
+{{ attributeFields }}
+            DateTime::make('createdAt')->sortable()->readOnly(),
+            DateTime::make('updatedAt')->sortable()->readOnly(),
+        ];
+    }

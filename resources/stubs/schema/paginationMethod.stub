@@ -1,0 +1,9 @@
+    /**
+     * Get the resource paginator.
+     *
+     * @return Paginator|null
+     */
+    public function pagination(): ?Paginator
+    {
+        return PagePagination::make();
+    }

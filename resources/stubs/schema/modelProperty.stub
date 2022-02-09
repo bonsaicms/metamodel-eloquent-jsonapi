@@ -1,0 +1,6 @@
+    /**
+     * The model the schema corresponds to.
+     *
+     * @var string
+     */
+    public static string $model = {{ eloquentModel }}::class;

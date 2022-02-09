@@ -2,6 +2,7 @@
 
 namespace BonsaiCms\MetamodelEloquentJsonApi\Observers;
 
+use Illuminate\Support\Facades\Config;
 use BonsaiCms\Metamodel\Models\Attribute;
 use BonsaiCms\MetamodelEloquentJsonApi\Contracts\JsonApiManagerContract;
 
@@ -19,8 +20,13 @@ class AttributeObserver
      */
     public function created(Attribute $attribute)
     {
-        // TODO
-//        $this->manager->regenerateModel($attribute->entity);
+        if (Config::get('bonsaicms-metamodel-eloquent-jsonapi.observeModels.attribute.schema.'.__FUNCTION__)) {
+            $this->manager->regenerateSchema($attribute->entity);
+        }
+
+        if (Config::get('bonsaicms-metamodel-eloquent-jsonapi.observeModels.attribute.request.'.__FUNCTION__)) {
+            $this->manager->regenerateRequest($attribute->entity);
+        }
     }
 
     /**
@@ -31,8 +37,13 @@ class AttributeObserver
      */
     public function updated(Attribute $attribute)
     {
-        // TODO
-//        $this->manager->regenerateModel($attribute->entity);
+        if (Config::get('bonsaicms-metamodel-eloquent-jsonapi.observeModels.attribute.schema.'.__FUNCTION__)) {
+            $this->manager->regenerateSchema($attribute->entity);
+        }
+
+        if (Config::get('bonsaicms-metamodel-eloquent-jsonapi.observeModels.attribute.request.'.__FUNCTION__)) {
+            $this->manager->regenerateRequest($attribute->entity);
+        }
     }
 
     /**
@@ -43,7 +54,12 @@ class AttributeObserver
      */
     public function deleted(Attribute $attribute)
     {
-        // TODO
-//        $this->manager->regenerateModel($attribute->entity);
+        if (Config::get('bonsaicms-metamodel-eloquent-jsonapi.observeModels.attribute.schema.'.__FUNCTION__)) {
+            $this->manager->regenerateSchema($attribute->entity);
+        }
+
+        if (Config::get('bonsaicms-metamodel-eloquent-jsonapi.observeModels.attribute.request.'.__FUNCTION__)) {
+            $this->manager->regenerateRequest($attribute->entity);
+        }
     }
 }
