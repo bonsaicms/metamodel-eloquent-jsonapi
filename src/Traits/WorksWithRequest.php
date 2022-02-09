@@ -8,10 +8,14 @@ use BonsaiCms\Metamodel\Models\Entity;
 use Illuminate\Support\Facades\Config;
 use BonsaiCms\MetamodelEloquentJsonApi\Stub;
 use BonsaiCms\Support\PhpDependenciesCollection;
+use BonsaiCms\Support\Stubs\Actions\SqueezeTheSameLines;
 use BonsaiCms\MetamodelEloquentJsonApi\Exceptions\RequestAlreadyExistsException;
 
 trait WorksWithRequest
 {
+    use WorksWithRequestAttributesRules;
+    use WorksWithRequestRelationshipsRules;
+
     public function deleteRequest(Entity $entity): self
     {
         if ($this->requestExists($entity)) {
@@ -70,27 +74,46 @@ trait WorksWithRequest
             Config::get('bonsaicms-metamodel-eloquent-jsonapi.generate.request.fileSuffix');
     }
 
+
+
+
+
+
+
+
     public function getRequestContents(Entity $entity): string
     {
-        $stub = new Stub('request');
-//
-//        // Global variables
-//        $stub->namespace = Config::get('bonsaicms-metamodel-eloquent-jsonapi.generate.namespace');
-//        $stub->parentModel = class_basename(Config::get('bonsaicms-metamodel-eloquent-jsonapi.generate.parentModel'));
-//        $stub->className = $entity->name;
+        $stub = new Stub('request/class');
+
+        // Global variables
+        $stub->namespace = $this->resolveRequestNamespace($entity);
+        $stub->parentModel = class_basename(Config::get('bonsaicms-metamodel-eloquent-jsonapi.generate.request.parentModel'));
+        $stub->className = $this->resolveRequestClassName($entity);
 
         // Dependencies
         $stub->dependencies = $this->resolveRequestDependencies($entity);
-//
-//        // Properties
-//        $stub->properties = $this->resolveProperties($entity);
-//
-//        // Methods
-//        $stub->methods = $this->resolveMethods($entity);
-//
-//        return $this->postProcessModelContents($stub->generate());
 
-        return '';
+        // Properties
+        $stub->properties = $this->resolveRequestProperties($entity);
+
+        // Methods
+        $stub->methods = $this->resolveRequestMethods($entity);
+
+        return $stub->generate();
+    }
+
+    protected function resolveRequestNamespace(Entity $entity): string
+    {
+        // TODO: co ak je namespace prazdny string? - lepsie nakodit
+        return Config::get('bonsaicms-metamodel-eloquent-jsonapi.generate.request.namespace')
+            .'\\'
+            .Str::plural($entity->name);
+    }
+
+    protected function resolveRequestClassName(Entity $entity): string
+    {
+        return $entity->name
+            .Config::get('bonsaicms-metamodel-eloquent-jsonapi.generate.request.classSuffix');
     }
 
     protected function resolveRequestDependencies(Entity $entity): string
@@ -101,10 +124,41 @@ trait WorksWithRequest
             Config::get('bonsaicms-metamodel-eloquent-jsonapi.generate.request.parentModel')
         );
 
+        $dependencies = $dependencies->merge(
+            $this->resolveRequestAttributeRulesDependencies($entity)
+        );
+
+        $dependencies = $dependencies->merge(
+            $this->resolveRequestRelationshipRulesDependencies($entity)
+        );
+
         // TODO: other dependencies
 
         return $dependencies->toPhpUsesString(
-            Config::get('bonsaicms-metamodel-eloquent-jsonapi.generate.request.namespace')
+            $this->resolveRequestNamespace($entity)
+        );
+    }
+
+    protected function resolveRequestProperties(Entity $entity): string
+    {
+        return Stub::make('request/properties');
+    }
+
+    protected function resolveRequestMethods(Entity $entity): string
+    {
+        return Stub::make('request/methods', [
+            'rulesMethod' => $this->resolveRulesMethod($entity),
+        ]);
+    }
+
+    protected function resolveRulesMethod(Entity $entity): string
+    {
+        return Stub::make(
+            'request/rulesMethod',
+            [
+                'attributesRules' => $this->resolveRequestAttributesRules($entity),
+                'relationshipsRules' => $this->resolveRequestRelationshipsRules($entity),
+            ]
         );
     }
 }

@@ -6,7 +6,6 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
 use BonsaiCms\Metamodel\Models\Entity;
 use Illuminate\Support\Facades\Config;
-use BonsaiCms\Metamodel\Models\Attribute;
 use BonsaiCms\MetamodelEloquentJsonApi\Stub;
 use BonsaiCms\Support\PhpDependenciesCollection;
 use BonsaiCms\Support\Stubs\Actions\SkipEmptyLines;
@@ -140,7 +139,6 @@ trait WorksWithSchema
         $dependencies->push('LaravelJsonApi\\Eloquent\\Contracts\\Paginator');
         $dependencies->push('LaravelJsonApi\\Eloquent\\Pagination\\PagePagination');
 
-        // TODO: musi tu byt to "$dependencies = $dependencies" ?
         $dependencies = $dependencies->merge(
             $this->resolveSchemaAttributeFieldDependencies($entity)
         );

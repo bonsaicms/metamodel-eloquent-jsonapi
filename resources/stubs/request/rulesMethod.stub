@@ -1,0 +1,15 @@
+    /**
+     * Get the validation rules for the resource.
+     *
+     * @return array
+     */
+    public function rules(): array
+    {
+        return [
+            // Attributes
+{{ attributesRules }}
+
+            // Relationships
+{{ relationshipsRules }}
+        ];
+    }

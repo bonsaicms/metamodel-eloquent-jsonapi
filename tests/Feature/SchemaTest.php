@@ -9,7 +9,7 @@ it('creates a basic schema when a new entity is created', function () {
     ]);
 
     $this->assertFileEquals(
-        expected: __DIR__.'/../generated/schemas/BasicEntity.php',
+        expected: __DIR__.'/../generated/schemas/BasicSchema.php',
         actual: __DIR__.'/../../vendor/orchestra/testbench-core/laravel/app/JsonApi/TestApi/Articles/ArticleSchema.generated.php'
     );
 });
@@ -69,7 +69,7 @@ it('creates a schema with attributes when a new entity with attributes is create
         ]);
 
     $this->assertFileEquals(
-        expected: __DIR__.'/../generated/schemas/EntityWithAttributes.php',
+        expected: __DIR__.'/../generated/schemas/SchemaWithAttributes.php',
         actual: __DIR__.'/../../vendor/orchestra/testbench-core/laravel/app/JsonApi/TestApi/Pages/PageSchema.generated.php'
     );
 });
