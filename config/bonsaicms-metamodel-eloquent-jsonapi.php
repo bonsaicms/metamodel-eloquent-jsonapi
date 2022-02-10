@@ -42,6 +42,11 @@ return [
                 'updated' => true,
                 'deleted' => true,
             ],
+            'routes' => [
+                'created' => true,
+                'updated' => true,
+                'deleted' => true,
+            ],
         ],
         'attribute' => [
             'enabled' => true,
@@ -55,6 +60,11 @@ return [
                 'updated' => true,
                 'deleted' => true,
             ],
+            'routes' => [
+                'created' => true,
+                'updated' => true,
+                'deleted' => true,
+            ],
         ],
         'relationship' => [
             'enabled' => true,
@@ -64,6 +74,11 @@ return [
                 'deleted' => true,
             ],
             'request' => [
+                'created' => true,
+                'updated' => true,
+                'deleted' => true,
+            ],
+            'routes' => [
                 'created' => true,
                 'updated' => true,
                 'deleted' => true,
@@ -84,6 +99,10 @@ return [
             'parentModel' => LaravelJsonApi\Laravel\Http\Requests\ResourceRequest::class,
             'fileSuffix' => 'Request.php',
             'classSuffix' => 'Request',
+        ],
+        'routes' => [
+            'folder' => base_path('routes'),
+            'file' => 'api.php',
         ],
     ],
 ];

@@ -2,6 +2,7 @@
 
 namespace BonsaiCms\MetamodelEloquentJsonApi\Tests;
 
+use Illuminate\Support\Facades\File;
 use Orchestra\Testbench\TestCase as Orchestra;
 use LaravelJsonApi\Testing\MakesJsonApiRequests;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -85,6 +86,10 @@ class TestCase extends Orchestra
                 'fileSuffix' => 'Request.generated.php',
                 'classSuffix' => 'CustomRequestClassSuffix',
             ],
+            'routes' => [
+                'folder' => base_path('routes-custom'),
+                'file' => 'api-custom.generated.php',
+            ],
         ]);
     }
 
@@ -110,13 +115,12 @@ class TestCase extends Orchestra
 
     protected function deleteGeneratedFiles()
     {
-        // TODO: delete whole directory ?
-        $files = glob(__DIR__.'/../vendor/orchestra/testbench-core/laravel/app/JsonApi/TestApi/*.generated.php');
+        File::deleteDirectory(
+            __DIR__.'/../vendor/orchestra/testbench-core/laravel/app/JsonApi'
+        );
 
-        foreach ($files as $file) {
-            if(is_file($file)) {
-                unlink($file);
-            }
-        }
+        File::deleteDirectory(
+            __DIR__.'/../vendor/orchestra/testbench-core/laravel/routes-custom'
+        );
     }
 }

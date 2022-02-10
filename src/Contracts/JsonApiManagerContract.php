@@ -45,4 +45,22 @@ interface JsonApiManagerContract
     function getRequestFilePath(Entity $entity): string;
 
     function getRequestContents(Entity $entity): string;
+
+    /*
+     * Routes
+     */
+
+    function deleteRoutes(): self;
+
+    function regenerateRoutes(): self;
+
+    function generateRoutes(): self;
+
+    function routesExist(): bool;
+
+    function getRoutesDirectoryPath(): string;
+
+    function getRoutesFilePath(): string;
+
+    function getRoutesContents(): string;
 }
