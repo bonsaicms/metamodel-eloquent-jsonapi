@@ -19,7 +19,9 @@ trait WorksWithRequest
     public function deleteRequest(Entity $entity): self
     {
         if ($this->requestExists($entity)) {
-            File::delete($this->getRequestFilePath($entity));
+            File::delete(
+                $this->getRequestFilePath($entity)
+            );
         }
 
         return $this;
@@ -56,7 +58,9 @@ trait WorksWithRequest
 
     public function requestExists(Entity $entity): bool
     {
-        return File::exists($this->getRequestFilePath($entity));
+        return File::exists(
+            $this->getRequestFilePath($entity)
+        );
     }
 
     public function getRequestDirectoryPath(Entity $entity): string
@@ -73,13 +77,6 @@ trait WorksWithRequest
             .$entity->name.
             Config::get('bonsaicms-metamodel-eloquent-jsonapi.generate.request.fileSuffix');
     }
-
-
-
-
-
-
-
 
     public function getRequestContents(Entity $entity): string
     {

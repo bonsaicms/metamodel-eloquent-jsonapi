@@ -18,7 +18,9 @@ trait WorksWithSchema
     public function deleteSchema(Entity $entity): self
     {
         if ($this->schemaExists($entity)) {
-            File::delete($this->getSchemaFilePath($entity));
+            File::delete(
+                $this->getSchemaFilePath($entity)
+            );
         }
 
         return $this;
@@ -58,7 +60,9 @@ trait WorksWithSchema
 
     public function schemaExists(Entity $entity): bool
     {
-        return File::exists($this->getSchemaFilePath($entity));
+        return File::exists(
+            $this->getSchemaFilePath($entity)
+        );
     }
 
     public function getSchemaDirectoryPath(Entity $entity): string
