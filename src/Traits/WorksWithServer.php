@@ -2,9 +2,14 @@
 
 namespace BonsaiCms\MetamodelEloquentJsonApi\Traits;
 
+use Illuminate\Support\Str;
+use Illuminate\Pipeline\Pipeline;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Config;
+use BonsaiCms\Metamodel\Models\Entity;
 use BonsaiCms\MetamodelEloquentJsonApi\Stub;
+use BonsaiCms\Support\Stubs\Actions\SkipEmptyLines;
+use BonsaiCms\Support\Stubs\Actions\TrimNewLinesFromTheEnd;
 use BonsaiCms\MetamodelEloquentJsonApi\Exceptions\ServerAlreadyExistsException;
 
 trait WorksWithServer
@@ -71,20 +76,41 @@ trait WorksWithServer
     {
         $stub = new Stub('server/file');
 
-//        // Global variables
-//        $stub->namespace = $this->resolveSchemaNamespace($entity);
-//        $stub->parentModel = class_basename(Config::get('bonsaicms-metamodel-eloquent-jsonapi.generate.schema.parentModel'));
-//        $stub->className = $this->resolveSchemaClassName($entity);
-//
-//        // Dependencies
-//        $stub->dependencies = $this->resolveSchemaDependencies($entity);
-//
-//        // Properties
-//        $stub->properties = $this->resolveSchemaProperties($entity);
-//
-//        // Methods
-//        $stub->methods = $this->resolveSchemaMethods($entity);
+        $stub->schemas = $this->resolveServerSchemas();
 
         return $stub->generate();
+    }
+
+    protected function resolveServerSchemas(): string
+    {
+        $entities = Entity::query()
+            ->with([
+                'attributes',
+                'leftRelationships',
+                'rightRelationships',
+            ])
+            ->orderBy('id') // TODO
+            ->get();
+
+        return ($entities->isEmpty())
+            ? '//'
+            : app(Pipeline::class)
+                ->send(
+                    $entities
+                        ->map(
+                            fn ($entity) => $this->resolveServerSchemaForEntity($entity)
+                        )
+                        ->join(PHP_EOL)
+                )
+                ->through([
+                    SkipEmptyLines::class,
+                    TrimNewLinesFromTheEnd::class,
+                ])
+                ->thenReturn();
+    }
+
+    protected function resolveServerSchemaForEntity(Entity $entity): string
+    {
+        return Str::plural($entity->name).'\\'.$entity->name.'Schema::class,';
     }
 }

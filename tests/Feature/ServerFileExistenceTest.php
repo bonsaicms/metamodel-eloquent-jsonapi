@@ -3,6 +3,16 @@
 use BonsaiCms\Metamodel\Models\Entity;
 use BonsaiCms\MetamodelEloquentJsonApi\Contracts\JsonApiManagerContract;
 
+it('generates a server file even though no entities exist', function () {
+    expect(app(JsonApiManagerContract::class)->serverExists())->toBeFalse();
+    $this->assertFileDoesNotExist(__DIR__.'/../../vendor/orchestra/testbench-core/laravel/app/JsonApi/TestApi/TestServer.generated.php');
+
+    app(JsonApiManagerContract::class)->generateServer();
+
+    $this->assertFileExists(__DIR__.'/../../vendor/orchestra/testbench-core/laravel/app/JsonApi/TestApi/TestServer.generated.php');
+    expect(app(JsonApiManagerContract::class)->serverExists())->toBeTrue();
+});
+
 it('creates a server file when created a new entity', function () {
     expect(app(JsonApiManagerContract::class)->serverExists())->toBeFalse();
     $this->assertFileDoesNotExist(__DIR__.'/../../vendor/orchestra/testbench-core/laravel/app/JsonApi/TestApi/TestServer.generated.php');

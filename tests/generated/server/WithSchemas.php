@@ -31,7 +31,8 @@ class Server extends BaseServer
     protected function allSchemas(): array
     {
         return [
-            {{ schemas|indentTabs(3) }}
+            BlueDogs\BlueDogSchema::class,
+            RedCats\RedCatSchema::class,
         ];
     }
 }
