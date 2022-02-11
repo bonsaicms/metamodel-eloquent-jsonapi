@@ -8,7 +8,6 @@ use BonsaiCms\Metamodel\Models\Entity;
 use Illuminate\Support\Facades\Config;
 use BonsaiCms\MetamodelEloquentJsonApi\Stub;
 use BonsaiCms\Support\PhpDependenciesCollection;
-use BonsaiCms\Support\Stubs\Actions\SqueezeTheSameLines;
 use BonsaiCms\MetamodelEloquentJsonApi\Exceptions\RequestAlreadyExistsException;
 
 trait WorksWithRequest

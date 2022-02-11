@@ -36,7 +36,7 @@ class PageCustomRequestClassSuffix extends AbstractRequest
                 'boolean',
             ],
             'someRequiredBooleanAttribute' => [
-                'required',
+                'present',
                 'boolean',
             ],
             'someNullableIntegerAttribute' => [

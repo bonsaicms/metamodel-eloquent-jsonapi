@@ -49,7 +49,13 @@ trait WorksWithRequestAttributesRules
         $method = 'resolve'.Str::studly($attribute->data_type).'AttributeRules';
 
         $rules = [
-            $attribute->nullable ? "'nullable'" : "'required'",
+            $attribute->nullable
+                ? "'nullable'"
+                : (
+                    ($attribute->data_type === 'boolean')
+                        ? "'present'"
+                        : "'required'"
+            ),
             ...$this->$method($attribute),
         ];
 
