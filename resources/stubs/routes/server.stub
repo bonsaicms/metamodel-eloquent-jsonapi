@@ -1,0 +1,7 @@
+JsonApiRoute::server('v1')
+    ->prefix('jsonapi')
+    ->namespace('Api\V1')
+    ->withoutMiddleware(SubstituteBindings::class)
+    ->resources(function ($server) {
+{{ routes|indentTabs(2) }}
+    });

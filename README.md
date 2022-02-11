@@ -16,6 +16,8 @@ You can publish the config file with:
 php artisan vendor:publish --tag="bonsaicms-metamodel-eloquent-jsonapi-config"
 ```
 
+# TODO: add info how to publish stubs
+
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.

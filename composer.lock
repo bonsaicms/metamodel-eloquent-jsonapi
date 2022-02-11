@@ -52,7 +52,7 @@
             "dist": {
                 "type": "path",
                 "url": "../metamodel-eloquent",
-                "reference": "3a18826024efa024c48aa516f563e6e9a0a2edae"
+                "reference": "1238d053d58a21bcff5fd2baf694b7f0749ca02e"
             },
             "require": {
                 "bonsaicms/metamodel": "dev-master",
@@ -118,7 +118,7 @@
             "dist": {
                 "type": "path",
                 "url": "../support",
-                "reference": "bc6e90bf9653536d4c059df5429e51e22e91fa58"
+                "reference": "65d1676e4121634cd5d594f1e5ab65017c7afbdd"
             },
             "require": {
                 "laravel/framework": "^8.0",

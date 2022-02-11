@@ -89,6 +89,13 @@ class TestCase extends Orchestra
             'routes' => [
                 'folder' => base_path('routes-custom'),
                 'file' => 'api-custom.generated.php',
+                'dependencies' => [
+                    \CustomClosure::class,
+                    \My\Custom\SubstituteBindings::class,
+                    \My\Custom\CompletelyCustomClass::class,
+                    \My\Custom\Something\JsonApiController::class,
+                ],
+                'namespace' => '', // TODO: toto by som mal aj prepisovat do toho suboru asi, ci?
             ],
         ]);
     }

@@ -103,6 +103,11 @@ return [
         'routes' => [
             'folder' => base_path('routes'),
             'file' => 'api.php',
+            'dependencies' => [
+                \Illuminate\Routing\Middleware\SubstituteBindings::class,
+                \LaravelJsonApi\Laravel\Http\Controllers\JsonApiController::class,
+            ],
+            'namespace' => '',
         ],
     ],
 ];

@@ -1,0 +1,6 @@
+<?php
+
+{{ dependencies }}
+
+{{ comment }}
+{{ server }}
