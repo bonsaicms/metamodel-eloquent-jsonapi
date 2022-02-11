@@ -1,90 +1,6 @@
 <?php
 
 return [
-//    /*
-//     * The name of the server.
-//     */
-//    'server' => 'metamodel-eloquent',
-//
-//    /*
-//     * Determine if the server is authorizable.
-//     */
-//    'authorizable' => true,
-//
-//    /*
-//     * The base URI namespace for the server.
-//     */
-//    'baseUri' => '/api/metamodel-eloquent',
-//
-//    /*
-//     * This array will be passed as the first argument to Route::group()
-//     */
-//    'routesConfig' => [
-//        'middleware' => [
-//            'api',
-//            'auth',
-//        ],
-//    ],
-
-    'bind' => [
-        'jsonApiManager' => true,
-    ],
-    'observeModels' => [
-        'entity' => [
-            'enabled' => true,
-            'schema' => [
-                'created' => true,
-                'updated' => true,
-                'deleted' => true,
-            ],
-            'request' => [
-                'created' => true,
-                'updated' => true,
-                'deleted' => true,
-            ],
-            'routes' => [
-                'created' => true,
-                'updated' => true,
-                'deleted' => true,
-            ],
-        ],
-        'attribute' => [
-            'enabled' => true,
-            'schema' => [
-                'created' => true,
-                'updated' => true,
-                'deleted' => true,
-            ],
-            'request' => [
-                'created' => true,
-                'updated' => true,
-                'deleted' => true,
-            ],
-            'routes' => [
-                'created' => true,
-                'updated' => true,
-                'deleted' => true,
-            ],
-        ],
-        'relationship' => [
-            'enabled' => true,
-            'schema' => [
-                'created' => true,
-                'updated' => true,
-                'deleted' => true,
-            ],
-            'request' => [
-                'created' => true,
-                'updated' => true,
-                'deleted' => true,
-            ],
-            'routes' => [
-                'created' => true,
-                'updated' => true,
-                'deleted' => true,
-            ],
-        ],
-    ],
     'generate' => [
         'schema' => [
             'folder' => app_path('JsonApi/V1'),
@@ -108,6 +24,84 @@ return [
                 \LaravelJsonApi\Laravel\Http\Controllers\JsonApiController::class,
             ],
             'namespace' => '',
+        ],
+        'server' => [
+            'folder' => app_path('JsonApi/V1'),
+            'file' => 'Server.php',
+        ],
+    ],
+    'bind' => [
+        'jsonApiManager' => true,
+    ],
+    'observeModels' => [
+        'entity' => [
+            'enabled' => true,
+            'schema' => [
+                'created' => true,
+                'updated' => true,
+                'deleted' => true,
+            ],
+            'request' => [
+                'created' => true,
+                'updated' => true,
+                'deleted' => true,
+            ],
+            'routes' => [
+                'created' => true,
+                'updated' => true,
+                'deleted' => true,
+            ],
+            'server' => [
+                'created' => true,
+                'updated' => true,
+                'deleted' => true,
+            ],
+        ],
+        'attribute' => [
+            'enabled' => true,
+            'schema' => [
+                'created' => true,
+                'updated' => true,
+                'deleted' => true,
+            ],
+            'request' => [
+                'created' => true,
+                'updated' => true,
+                'deleted' => true,
+            ],
+            'routes' => [
+                'created' => true,
+                'updated' => true,
+                'deleted' => true,
+            ],
+            'server' => [
+                'created' => true,
+                'updated' => true,
+                'deleted' => true,
+            ],
+        ],
+        'relationship' => [
+            'enabled' => true,
+            'schema' => [
+                'created' => true,
+                'updated' => true,
+                'deleted' => true,
+            ],
+            'request' => [
+                'created' => true,
+                'updated' => true,
+                'deleted' => true,
+            ],
+            'routes' => [
+                'created' => true,
+                'updated' => true,
+                'deleted' => true,
+            ],
+            'server' => [
+                'created' => true,
+                'updated' => true,
+                'deleted' => true,
+            ],
         ],
     ],
 ];

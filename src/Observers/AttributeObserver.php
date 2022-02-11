@@ -31,6 +31,10 @@ class AttributeObserver
         if (Config::get('bonsaicms-metamodel-eloquent-jsonapi.observeModels.attribute.routes.'.__FUNCTION__)) {
             $this->manager->regenerateRoutes();
         }
+
+        if (Config::get('bonsaicms-metamodel-eloquent-jsonapi.observeModels.attribute.server.'.__FUNCTION__)) {
+            $this->manager->regenerateServer();
+        }
     }
 
     /**
@@ -52,6 +56,10 @@ class AttributeObserver
         if (Config::get('bonsaicms-metamodel-eloquent-jsonapi.observeModels.attribute.routes.'.__FUNCTION__)) {
             $this->manager->regenerateRoutes();
         }
+
+        if (Config::get('bonsaicms-metamodel-eloquent-jsonapi.observeModels.attribute.server.'.__FUNCTION__)) {
+            $this->manager->regenerateServer();
+        }
     }
 
     /**
@@ -72,6 +80,10 @@ class AttributeObserver
 
         if (Config::get('bonsaicms-metamodel-eloquent-jsonapi.observeModels.attribute.routes.'.__FUNCTION__)) {
             $this->manager->regenerateRoutes();
+        }
+
+        if (Config::get('bonsaicms-metamodel-eloquent-jsonapi.observeModels.attribute.server.'.__FUNCTION__)) {
+            $this->manager->regenerateServer();
         }
     }
 }

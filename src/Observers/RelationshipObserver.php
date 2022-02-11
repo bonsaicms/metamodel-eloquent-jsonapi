@@ -32,7 +32,10 @@ class RelationshipObserver
 
         if (Config::get('bonsaicms-metamodel-eloquent-jsonapi.observeModels.relationship.routes.'.__FUNCTION__)) {
             $this->manager->regenerateRoutes();
-            $this->manager->regenerateRoutes();
+        }
+
+        if (Config::get('bonsaicms-metamodel-eloquent-jsonapi.observeModels.relationship.server.'.__FUNCTION__)) {
+            $this->manager->regenerateServer();
         }
     }
 
@@ -56,7 +59,10 @@ class RelationshipObserver
 
         if (Config::get('bonsaicms-metamodel-eloquent-jsonapi.observeModels.relationship.routes.'.__FUNCTION__)) {
             $this->manager->regenerateRoutes();
-            $this->manager->regenerateRoutes();
+        }
+
+        if (Config::get('bonsaicms-metamodel-eloquent-jsonapi.observeModels.relationship.server.'.__FUNCTION__)) {
+            $this->manager->regenerateServer();
         }
     }
 
@@ -80,7 +86,10 @@ class RelationshipObserver
 
         if (Config::get('bonsaicms-metamodel-eloquent-jsonapi.observeModels.relationship.routes.'.__FUNCTION__)) {
             $this->manager->regenerateRoutes();
-            $this->manager->regenerateRoutes();
+        }
+
+        if (Config::get('bonsaicms-metamodel-eloquent-jsonapi.observeModels.relationship.server.'.__FUNCTION__)) {
+            $this->manager->regenerateServer();
         }
     }
 }

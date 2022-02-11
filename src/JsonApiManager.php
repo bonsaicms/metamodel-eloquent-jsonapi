@@ -9,4 +9,5 @@ class JsonApiManager implements JsonApiManagerContract
     use Traits\WorksWithSchema;
     use Traits\WorksWithRequest;
     use Traits\WorksWithRoutes;
+    use Traits\WorksWithServer;
 }

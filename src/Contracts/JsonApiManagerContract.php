@@ -63,4 +63,22 @@ interface JsonApiManagerContract
     function getRoutesFilePath(): string;
 
     function getRoutesContents(): string;
+
+    /*
+     * Server
+     */
+
+    function deleteServer(): self;
+
+    function regenerateServer(): self;
+
+    function generateServer(): self;
+
+    function serverExists(): bool;
+
+    function getServerDirectoryPath(): string;
+
+    function getServerFilePath(): string;
+
+    function getServerContents(): string;
 }

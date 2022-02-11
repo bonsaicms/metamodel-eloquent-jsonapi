@@ -97,6 +97,10 @@ class TestCase extends Orchestra
                 ],
                 'namespace' => '', // TODO: toto by som mal aj prepisovat do toho suboru asi, ci?
             ],
+            'server' => [
+                'folder' => app_path('JsonApi/TestApi'),
+                'file' => 'TestServer.generated.php',
+            ],
         ]);
     }
 

@@ -31,6 +31,10 @@ class EntityObserver
         if (Config::get('bonsaicms-metamodel-eloquent-jsonapi.observeModels.entity.routes.'.__FUNCTION__)) {
             $this->manager->regenerateRoutes();
         }
+
+        if (Config::get('bonsaicms-metamodel-eloquent-jsonapi.observeModels.entity.server.'.__FUNCTION__)) {
+            $this->manager->regenerateServer();
+        }
     }
 
     /**
@@ -52,6 +56,10 @@ class EntityObserver
         if (Config::get('bonsaicms-metamodel-eloquent-jsonapi.observeModels.entity.routes.'.__FUNCTION__)) {
             $this->manager->regenerateRoutes();
         }
+
+        if (Config::get('bonsaicms-metamodel-eloquent-jsonapi.observeModels.entity.server.'.__FUNCTION__)) {
+            $this->manager->regenerateServer();
+        }
     }
 
     /**
@@ -72,6 +80,10 @@ class EntityObserver
 
         if (Config::get('bonsaicms-metamodel-eloquent-jsonapi.observeModels.entity.routes.'.__FUNCTION__)) {
             $this->manager->regenerateRoutes();
+        }
+
+        if (Config::get('bonsaicms-metamodel-eloquent-jsonapi.observeModels.entity.server.'.__FUNCTION__)) {
+            $this->manager->regenerateServer();
         }
     }
 }
