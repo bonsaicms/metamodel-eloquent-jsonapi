@@ -87,14 +87,14 @@ return [
     ],
     'generate' => [
         'schema' => [
-            'folder' => app_path('JsonApi/Generated'),
+            'folder' => app_path('JsonApi/V1'),
             'namespace' => app()->getNamespace().'JsonApi\\Generated',
             'parentModel' => LaravelJsonApi\Eloquent\Schema::class,
             'fileSuffix' => 'Schema.php',
             'classSuffix' => 'Schema',
         ],
         'request' => [
-            'folder' => app_path('JsonApi/Generated'),
+            'folder' => app_path('JsonApi/V1'),
             'namespace' => app()->getNamespace().'JsonApi\\Generated',
             'parentModel' => LaravelJsonApi\Laravel\Http\Requests\ResourceRequest::class,
             'fileSuffix' => 'Request.php',
