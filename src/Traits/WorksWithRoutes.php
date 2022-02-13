@@ -4,10 +4,12 @@ namespace BonsaiCms\MetamodelEloquentJsonApi\Traits;
 
 use Illuminate\Support\Str;
 use Illuminate\Pipeline\Pipeline;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Config;
 use BonsaiCms\Metamodel\Models\Entity;
 use BonsaiCms\MetamodelEloquentJsonApi\Stub;
+use BonsaiCms\Metamodel\Models\Relationship;
 use BonsaiCms\Support\PhpDependenciesCollection;
 use BonsaiCms\Support\Stubs\Actions\SkipEmptyLines;
 use BonsaiCms\Support\Stubs\Actions\TrimNewLinesFromTheEnd;
@@ -97,7 +99,12 @@ trait WorksWithRoutes
             Config::get('bonsaicms-metamodel-eloquent-jsonapi.generate.routes.dependencies')
         );
 
-        // TODO: other dependencies
+        if (Entity::query()
+            ->has('leftRelationships')
+            ->orHas('rightRelationships')
+            ->exists()) {
+            $dependencies->push(\LaravelJsonApi\Laravel\Routing\Relationships::class);
+        }
 
         return $dependencies->toPhpUsesString(
             $this->resolveRoutesNamespace()
@@ -154,8 +161,81 @@ trait WorksWithRoutes
 
     protected function resolveRoutesDefinitionsForEntity(Entity $entity): string
     {
-        $resource = Str::of($entity->name)->plural()->kebab();
+        return Stub::make('routes/resource', [
+            'resource' => Str::of($entity->name)->plural()->kebab(),
+            'relationships' => $this->resolveRoutesRelationshipsForEntity($entity),
+            'actions' => $this->resolveRoutesActionsForEntity($entity),
+        ]);
+    }
 
-        return '$server->resource(\''.$resource.'\', \'\\\\\' . JsonApiController::class);'.PHP_EOL;
+    protected function resolveRoutesRelationshipsForEntity(Entity $entity): string
+    {
+        $relationships = $this->getRoutesSortedRelationshipsForEntity($entity);
+
+        if ($relationships->isEmpty()) {
+            return '';
+        }
+
+        return Stub::make('routes/relationships', [
+            'relationships' => app(Pipeline::class)
+                ->send($relationships
+                    ->map(
+                        fn ($relationship) => $this->resolveRoutesRelationshipsForEntityRelationship($entity, $relationship)
+                    )
+                    ->join(PHP_EOL)
+                )
+                ->through([
+                    SkipEmptyLines::class,
+                    TrimNewLinesFromTheEnd::class,
+                ])
+                ->thenReturn()
+        ]);
+    }
+
+    protected function resolveRoutesRelationshipsForEntityRelationship(Entity $entity, Relationship $relationship): string
+    {
+        if ($relationship->cardinality === 'oneToOne') {
+            $relationshipCardinality = 'One';
+        } else if ($relationship->cardinality === 'manyToMany') {
+            $relationshipCardinality = 'Many';
+        } else {
+            $relationshipCardinality = ($entity->is($relationship->leftEntity))
+                ? 'Many'
+                : 'One';
+        }
+
+        return Stub::make("routes/has{$relationshipCardinality}Relationship", [
+            'relationshipName' => ($entity->is($relationship->leftEntity))
+                ? $relationship->left_relationship_name
+                : $relationship->right_relationship_name,
+        ]);
+    }
+
+    // TODO: DRY
+    protected function getRoutesSortedRelationshipsForEntity(Entity $entity): Collection
+    {
+        return $this->sortRoutesRelationships(
+            $entity
+                ->leftRelationships
+                ->merge(
+                    $entity->rightRelationships
+                )
+        );
+    }
+
+    // TODO: more custom method name
+    protected function sortRoutesRelationships(Collection $relationships): Collection
+    {
+        // TODO: implement some sort
+        // TODO: DRY
+
+        return $relationships;
+    }
+
+    protected function resolveRoutesActionsForEntity(Entity $entity): string
+    {
+        return Stub::make('routes/actions', [
+            //
+        ]);
     }
 }

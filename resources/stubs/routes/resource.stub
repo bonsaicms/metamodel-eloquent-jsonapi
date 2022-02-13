@@ -1,0 +1,3 @@
+$server->resource('{{ resource }}', '\\' . JsonApiController::class)
+    {{ relationships|indentTabs(1) }}
+    {{ actions|indentTabs(1) }};
