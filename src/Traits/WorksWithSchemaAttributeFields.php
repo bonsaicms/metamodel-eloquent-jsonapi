@@ -13,14 +13,14 @@ trait WorksWithSchemaAttributeFields
      * General methods
      */
 
-    protected function resolveAttributeFields(Entity $entity): string
+    protected function resolveSchemaAttributeFields(Entity $entity): string
     {
         return $entity->attributes->reduce(function (string $carry, Attribute $attribute) {
             return $carry .= $this->resolveAttributeField($attribute) . PHP_EOL;
         }, '');
     }
 
-    protected function resolveSchemaAttributeFieldDependencies(Entity $entity): Collection
+    protected function resolveSchemaAttributeFieldsDependencies(Entity $entity): Collection
     {
         return $entity->attributes
             ->map(function (Attribute $attribute) {
@@ -34,10 +34,7 @@ trait WorksWithSchemaAttributeFields
     {
         $method = 'resolve'.Str::studly($attribute->data_type).'AttributeField';
 
-        return
-            '            '.
-            $this->$method($attribute).
-            PHP_EOL;
+        return $this->$method($attribute).PHP_EOL;
     }
 
     /*

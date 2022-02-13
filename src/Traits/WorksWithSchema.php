@@ -14,6 +14,7 @@ use BonsaiCms\MetamodelEloquentJsonApi\Exceptions\SchemaAlreadyExistsException;
 trait WorksWithSchema
 {
     use WorksWithSchemaAttributeFields;
+    use WorksWithSchemaRelationshipFields;
 
     public function deleteSchema(Entity $entity): self
     {
@@ -144,7 +145,11 @@ trait WorksWithSchema
         $dependencies->push('LaravelJsonApi\\Eloquent\\Pagination\\PagePagination');
 
         $dependencies = $dependencies->merge(
-            $this->resolveSchemaAttributeFieldDependencies($entity)
+            $this->resolveSchemaAttributeFieldsDependencies($entity)
+        );
+
+        $dependencies = $dependencies->merge(
+            $this->resolveSchemaRelationshipFieldsDependencies($entity)
         );
 
         // TODO: other dependencies
@@ -157,11 +162,11 @@ trait WorksWithSchema
     protected function resolveSchemaProperties(Entity $entity): string
     {
         return Stub::make('schema/properties', [
-            'modelProperty' => $this->resolveModelPropery($entity),
+            'modelProperty' => $this->resolveSchemaModelProperty($entity),
         ]);
     }
 
-    protected function resolveModelPropery(Entity $entity): string
+    protected function resolveSchemaModelProperty(Entity $entity): string
     {
         return Stub::make('schema/modelProperty', [
             'eloquentModel' => $entity->name, // TODO: zamysliet sa
@@ -171,18 +176,19 @@ trait WorksWithSchema
     protected function resolveSchemaMethods(Entity $entity): string
     {
         return Stub::make('schema/methods', [
-            'fieldsMethod' => $this->resolveFieldsMethod($entity),
-            'filtersMethod' => $this->resolveFiltersMethod($entity),
-            'paginationMethod' => $this->resolvePaginationMethod($entity),
+            'fieldsMethod' => $this->resolveSchemaFieldsMethod($entity),
+            'filtersMethod' => $this->resolveSchemaFiltersMethod($entity),
+            'paginationMethod' => $this->resolveSchemaPaginationMethod($entity),
         ]);
     }
 
-    protected function resolveFieldsMethod(Entity $entity): string
+    protected function resolveSchemaFieldsMethod(Entity $entity): string
     {
         return Stub::make(
             'schema/fieldsMethod',
             [
-                'attributeFields' => $this->resolveAttributeFields($entity),
+                'attributeFields' => $this->resolveSchemaAttributeFields($entity),
+                'relationshipFields' =>  $this->resolveSchemaRelationshipFields($entity),
             ],
             [
                 SkipEmptyLines::class,
@@ -190,12 +196,12 @@ trait WorksWithSchema
         );
     }
 
-    protected function resolveFiltersMethod(Entity $entity): string
+    protected function resolveSchemaFiltersMethod(Entity $entity): string
     {
         return Stub::make('schema/filtersMethod');
     }
 
-    protected function resolvePaginationMethod(Entity $entity): string
+    protected function resolveSchemaPaginationMethod(Entity $entity): string
     {
         return Stub::make('schema/paginationMethod');
     }

@@ -7,8 +7,10 @@
     {
         return [
             ID::make(),
-{{ attributeFields }}
+{{ attributeFields|indentTabs(3, false) }}
             DateTime::make('createdAt')->sortable()->readOnly(),
             DateTime::make('updatedAt')->sortable()->readOnly(),
+
+{{ relationshipFields|indentTabs(3, false) }}
         ];
     }
