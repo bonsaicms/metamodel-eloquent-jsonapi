@@ -128,10 +128,14 @@ class TestCase extends Orchestra
     {
         File::deleteDirectory(
             __DIR__.'/../vendor/orchestra/testbench-core/laravel/app/JsonApi'
+            // TODO: namiesto tohto to viem napisat takto
+            // app_path('JsonApi')
         );
 
         File::deleteDirectory(
             __DIR__.'/../vendor/orchestra/testbench-core/laravel/routes-custom'
+            // TODO: namiesto tohto to viem napisat takto
+            // base_path('routes-custom')
         );
     }
 }

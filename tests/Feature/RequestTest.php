@@ -147,7 +147,7 @@ it('creates a request with attribute rules when a new entity with attributes is 
         ->for($entity)
         ->create([
             'column' => 'some_nullable_datetime_attribute',
-            'data_type' => 'date',
+            'data_type' => 'datetime',
             'nullable' => true,
         ]);
 
@@ -155,7 +155,7 @@ it('creates a request with attribute rules when a new entity with attributes is 
         ->for($entity)
         ->create([
             'column' => 'some_required_datetime_attribute',
-            'data_type' => 'date',
+            'data_type' => 'datetime',
             'nullable' => false,
         ]);
 
