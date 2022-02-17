@@ -24,7 +24,7 @@ trait WorksWithSchemaAttributeFields
     {
         return $entity->attributes
             ->map(function (Attribute $attribute) {
-                $method = 'resolve'.Str::studly($attribute->data_type).'AttributeFieldDependencies';
+                $method = "resolve{$attribute->data_type}AttributeFieldDependencies";
                 return $this->$method($attribute);
             })
             ->flatten();
@@ -32,7 +32,7 @@ trait WorksWithSchemaAttributeFields
 
     protected function resolveAttributeField(Attribute $attribute): string
     {
-        $method = 'resolve'.Str::studly($attribute->data_type).'AttributeField';
+        $method = "resolve{$attribute->data_type}AttributeField";
 
         return $this->$method($attribute).PHP_EOL;
     }
@@ -140,5 +140,35 @@ trait WorksWithSchemaAttributeFields
     protected function resolveDateTimeAttributeFieldDependencies(Attribute $attribute): array
     {
         return [ 'LaravelJsonApi\\Eloquent\\Fields\\DateTime' ];
+    }
+
+    /*
+     * ArrayList
+     */
+
+    protected function resolveArrayListAttributeField(Attribute $attribute): string
+    {
+        $name = Str::camel($attribute->column);
+        return "ArrayList::make('$name')->sortable(),";
+    }
+
+    protected function resolveArrayListAttributeFieldDependencies(Attribute $attribute): array
+    {
+        return [ 'LaravelJsonApi\\Eloquent\\Fields\\ArrayList' ];
+    }
+
+    /*
+     * ArrayHash
+     */
+
+    protected function resolveArrayHashAttributeField(Attribute $attribute): string
+    {
+        $name = Str::camel($attribute->column);
+        return "ArrayHash::make('$name')->sortable(),";
+    }
+
+    protected function resolveArrayHashAttributeFieldDependencies(Attribute $attribute): array
+    {
+        return [ 'LaravelJsonApi\\Eloquent\\Fields\\ArrayHash' ];
     }
 }

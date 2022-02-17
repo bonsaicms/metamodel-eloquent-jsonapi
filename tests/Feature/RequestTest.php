@@ -159,6 +159,46 @@ it('creates a request with attribute rules when a new entity with attributes is 
             'nullable' => false,
         ]);
 
+    /*
+     * ArrayList
+     */
+
+    Attribute::factory()
+        ->for($entity)
+        ->create([
+            'column' => 'some_nullable_arraylist_attribute',
+            'data_type' => 'arraylist',
+            'nullable' => true,
+        ]);
+
+    Attribute::factory()
+        ->for($entity)
+        ->create([
+            'column' => 'some_required_arraylist_attribute',
+            'data_type' => 'arraylist',
+            'nullable' => false,
+        ]);
+
+    /*
+     * ArrayHash
+     */
+
+    Attribute::factory()
+        ->for($entity)
+        ->create([
+            'column' => 'some_nullable_arrayhash_attribute',
+            'data_type' => 'arrayhash',
+            'nullable' => true,
+        ]);
+
+    Attribute::factory()
+        ->for($entity)
+        ->create([
+            'column' => 'some_required_arrayhash_attribute',
+            'data_type' => 'arrayhash',
+            'nullable' => false,
+        ]);
+
     $this->assertFileEquals(
         expected: __DIR__.'/../generated/requests/RequestWithRules.php',
         actual: __DIR__.'/../../vendor/orchestra/testbench-core/laravel/app/JsonApi/TestApi/Pages/PageRequest.generated.php'

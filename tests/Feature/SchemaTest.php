@@ -68,6 +68,20 @@ it('creates a schema with attributes when a new entity with attributes is create
             'data_type' => 'datetime',
         ]);
 
+    Attribute::factory()
+        ->for($entity)
+        ->create([
+            'column' => 'some_arraylist_attribute',
+            'data_type' => 'arraylist',
+        ]);
+
+    Attribute::factory()
+        ->for($entity)
+        ->create([
+            'column' => 'some_arrayhash_attribute',
+            'data_type' => 'arrayhash',
+        ]);
+
     $this->assertFileEquals(
         expected: __DIR__.'/../generated/schemas/SchemaWithAttributes.php',
         actual: __DIR__.'/../../vendor/orchestra/testbench-core/laravel/app/JsonApi/TestApi/Pages/PageSchema.generated.php'

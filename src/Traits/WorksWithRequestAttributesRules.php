@@ -38,7 +38,7 @@ trait WorksWithRequestAttributesRules
     {
         return $entity->attributes
             ->map(function (Attribute $attribute) {
-                $method = 'resolve'.Str::studly($attribute->data_type).'AttributeRulesDependencies';
+                $method = "resolve{$attribute->data_type}AttributeRulesDependencies";
                 return $this->$method($attribute);
             })
             ->flatten();
@@ -46,7 +46,7 @@ trait WorksWithRequestAttributesRules
 
     protected function resolveAttributeRules(Attribute $attribute): string
     {
-        $method = 'resolve'.Str::studly($attribute->data_type).'AttributeRules';
+        $method = "resolve{$attribute->data_type}AttributeRules";
 
         $rules = [
             $attribute->nullable
@@ -175,6 +175,38 @@ trait WorksWithRequestAttributesRules
     }
 
     protected function resolveDateTimeAttributeRulesDependencies(Attribute $attribute): array
+    {
+        return [];
+    }
+
+    /*
+     * ArrayList
+     */
+
+    protected function resolveArrayListAttributeRules(Attribute $attribute): array
+    {
+        return [
+            "'json'",
+        ];
+    }
+
+    protected function resolveArrayListAttributeRulesDependencies(Attribute $attribute): array
+    {
+        return [];
+    }
+
+    /*
+     * ArrayHash
+     */
+
+    protected function resolveArrayHashAttributeRules(Attribute $attribute): array
+    {
+        return [
+            "'json'",
+        ];
+    }
+
+    protected function resolveArrayHashAttributeRulesDependencies(Attribute $attribute): array
     {
         return [];
     }

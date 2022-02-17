@@ -71,6 +71,22 @@ class PageCustomRequestClassSuffix extends AbstractRequest
                 'required',
                 'date',
             ],
+            'someNullableArraylistAttribute' => [
+                'nullable',
+                'json',
+            ],
+            'someRequiredArraylistAttribute' => [
+                'required',
+                'json',
+            ],
+            'someNullableArrayhashAttribute' => [
+                'nullable',
+                'json',
+            ],
+            'someRequiredArrayhashAttribute' => [
+                'required',
+                'json',
+            ],
 
             // Relationships
             //
