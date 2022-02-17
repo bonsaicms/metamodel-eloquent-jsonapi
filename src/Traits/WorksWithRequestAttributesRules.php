@@ -19,7 +19,7 @@ trait WorksWithRequestAttributesRules
     protected function resolveRequestAttributesRules(Entity $entity): string
     {
         if ($entity->attributes->isEmpty()) {
-            return '            //';
+            return '//';
         }
 
         return app(Pipeline::class)
@@ -61,9 +61,10 @@ trait WorksWithRequestAttributesRules
 
         return Stub::make('request/rule', [
             'field' => Str::camel($attribute->column),
-            'rules' => collect($rules)->reduce(function (string $carry, string $rule) {
-                return $carry .= '                '.$rule.','.PHP_EOL;
-            }, ''),
+            'rules' => collect($rules)->map(
+                static fn ($rule) => $rule.','
+            )->join(PHP_EOL)
+
         ]);
     }
 

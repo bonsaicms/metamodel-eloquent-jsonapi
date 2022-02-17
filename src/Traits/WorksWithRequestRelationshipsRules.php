@@ -20,7 +20,7 @@ trait WorksWithRequestRelationshipsRules
     protected function resolveRequestRelationshipsRules(Entity $entity): string
     {
         if ($entity->leftRelationships->isEmpty() && $entity->rightRelationships->isEmpty()) {
-            return '            //';
+            return '//';
         }
 
         return app(Pipeline::class)
@@ -62,7 +62,7 @@ trait WorksWithRequestRelationshipsRules
         return Stub::make('request/rule', [
             'field' => $this->resolveRequestRelationshipRuleFieldName($entity, $relationship),
             'rules' => collect($rules)->map(
-                static fn ($rule) => "                $rule,"
+                static fn ($rule) => $rule.','
             )->join(PHP_EOL)
         ]);
     }
