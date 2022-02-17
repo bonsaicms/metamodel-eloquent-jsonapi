@@ -1,12 +1,12 @@
-    /**
-     * Get the resource filters.
-     *
-     * @return array
-     */
-    public function filters(): array
-    {
-        return [
-            WhereIdIn::make($this),
-            WhereIdNotIn::make($this, 'except'),
-        ];
-    }
+/**
+ * Get the resource filters.
+ *
+ * @return array
+ */
+public function filters(): array
+{
+    return [
+        WhereIdIn::make($this),
+        WhereIdNotIn::make($this, 'except'),
+    ];
+}

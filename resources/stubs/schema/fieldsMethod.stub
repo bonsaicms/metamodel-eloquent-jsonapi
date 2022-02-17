@@ -1,16 +1,16 @@
-    /**
-     * Get the resource fields.
-     *
-     * @return array
-     */
-    public function fields(): array
-    {
-        return [
-            ID::make(),
-{{ attributeFields|indentTabs(3, false) }}
-            DateTime::make('createdAt')->sortable()->readOnly(),
-            DateTime::make('updatedAt')->sortable()->readOnly(),
+/**
+ * Get the resource fields.
+ *
+ * @return array
+ */
+public function fields(): array
+{
+    return [
+        ID::make(),
+{{ attributeFields|indentTabs(2, false) }}
+        DateTime::make('createdAt')->sortable()->readOnly(),
+        DateTime::make('updatedAt')->sortable()->readOnly(),
 
-{{ relationshipFields|indentTabs(3, false) }}
-        ];
-    }
+{{ relationshipFields|indentTabs(2, false) }}
+    ];
+}
