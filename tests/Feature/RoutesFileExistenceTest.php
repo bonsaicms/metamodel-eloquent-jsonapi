@@ -43,7 +43,6 @@ it('deletes the routes file when the last entity is deleted', function () {
     $entity3->delete();
     expect(app(JsonApiManagerContract::class)->routesExist())->toBeFalse();
     $this->assertFileDoesNotExist(__DIR__.'/../../vendor/orchestra/testbench-core/laravel/routes-custom/api-custom.generated.php');
-
 });
 
 it('does not generate the routes file when no entities exist', function () {
