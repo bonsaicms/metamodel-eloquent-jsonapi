@@ -30,11 +30,11 @@ it('creates schema files for two entities with oneToOne relationships', function
 
     $this->assertFileEquals(
         expected: __DIR__.'/../generated/schemas/OneToOneSchemaA.php',
-        actual: __DIR__.'/../../vendor/orchestra/testbench-core/laravel/app/JsonApi/TestApi/BlueDogs/BlueDogSchema.generated.php'
+        actual: base_path('app/JsonApi/TestApi/BlueDogs/BlueDogSchema.generated.php')
     );
     $this->assertFileEquals(
         expected: __DIR__.'/../generated/schemas/OneToOneSchemaB.php',
-        actual: __DIR__.'/../../vendor/orchestra/testbench-core/laravel/app/JsonApi/TestApi/RedCats/RedCatSchema.generated.php'
+        actual: base_path('app/JsonApi/TestApi/RedCats/RedCatSchema.generated.php')
     );
 });
 
@@ -51,11 +51,11 @@ it('creates schema files for two entities with oneToMany relationships', functio
 
     $this->assertFileEquals(
         expected: __DIR__.'/../generated/schemas/OneToManySchemaA.php',
-        actual: __DIR__.'/../../vendor/orchestra/testbench-core/laravel/app/JsonApi/TestApi/BlueDogs/BlueDogSchema.generated.php'
+        actual: base_path('app/JsonApi/TestApi/BlueDogs/BlueDogSchema.generated.php')
     );
     $this->assertFileEquals(
         expected: __DIR__.'/../generated/schemas/OneToManySchemaB.php',
-        actual: __DIR__.'/../../vendor/orchestra/testbench-core/laravel/app/JsonApi/TestApi/RedCats/RedCatSchema.generated.php'
+        actual: base_path('app/JsonApi/TestApi/RedCats/RedCatSchema.generated.php')
     );
 });
 
@@ -74,11 +74,11 @@ it('creates schema files for two entities with manyToMany relationships', functi
 
     $this->assertFileEquals(
         expected: __DIR__.'/../generated/schemas/ManyToManySchemaA.php',
-        actual: __DIR__.'/../../vendor/orchestra/testbench-core/laravel/app/JsonApi/TestApi/BlueDogs/BlueDogSchema.generated.php'
+        actual: base_path('app/JsonApi/TestApi/BlueDogs/BlueDogSchema.generated.php')
     );
     $this->assertFileEquals(
         expected: __DIR__.'/../generated/schemas/ManyToManySchemaB.php',
-        actual: __DIR__.'/../../vendor/orchestra/testbench-core/laravel/app/JsonApi/TestApi/RedCats/RedCatSchema.generated.php'
+        actual: base_path('app/JsonApi/TestApi/RedCats/RedCatSchema.generated.php')
     );
 });
 

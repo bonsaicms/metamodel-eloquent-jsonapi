@@ -9,7 +9,7 @@ it('creates routes for a new entity', function () {
 
     $this->assertFileEquals(
         expected: __DIR__.'/../generated/routes/singleEntity.php',
-        actual: __DIR__.'/../../vendor/orchestra/testbench-core/laravel/routes-custom/api-custom.generated.php'
+        actual: base_path('routes-custom/api-custom.generated.php')
     );
 });
 
@@ -24,6 +24,6 @@ it('creates routes for two entities', function () {
 
     $this->assertFileEquals(
         expected: __DIR__.'/../generated/routes/twoEntities.php',
-        actual: __DIR__.'/../../vendor/orchestra/testbench-core/laravel/routes-custom/api-custom.generated.php'
+        actual: base_path('routes-custom/api-custom.generated.php')
     );
 });

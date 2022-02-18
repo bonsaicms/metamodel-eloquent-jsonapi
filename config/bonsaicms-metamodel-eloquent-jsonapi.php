@@ -17,6 +17,7 @@ return [
             'classSuffix' => 'Request',
         ],
         'routes' => [
+            'canBeEmpty' => true,
             'folder' => base_path('routes'),
             'file' => 'api.php',
             'dependencies' => [

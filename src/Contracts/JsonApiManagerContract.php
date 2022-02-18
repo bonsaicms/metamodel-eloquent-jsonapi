@@ -2,8 +2,10 @@
 
 namespace BonsaiCms\MetamodelEloquentJsonApi\Contracts;
 
+use Illuminate\Support\Collection;
 use BonsaiCms\Metamodel\Models\Entity;
 use BonsaiCms\MetamodelEloquentJsonApi\Exceptions\SchemaAlreadyExistsException;
+use BonsaiCms\MetamodelEloquentJsonApi\Exceptions\RoutesAlreadyExistsException;
 
 interface JsonApiManagerContract
 {
@@ -50,13 +52,27 @@ interface JsonApiManagerContract
      * Routes
      */
 
-    function deleteRoutes(): self;
+    // TODO: testy pre force
+    function deleteRoutes(bool $force = false): self;
 
-    function regenerateRoutes(): self;
+    // TODO: testy pre $forEntities
+    // TODO: testy pre force
+    function regenerateRoutes(Collection $forEntities = null, bool $force = false): self;
 
-    function generateRoutes(): self;
+    // TODO: testy pre $forEntities
+    // TODO: testy pre force
+    function generateRoutes(Collection $forEntities = null, bool $force = false): self;
+
+    /**
+     * @throws RoutesAlreadyExistsException
+     */
+    // TODO: testy
+    public function generateEmptyRoutes(): self;
 
     function routesExist(): bool;
+
+    // TODO: spravit taku metodu?
+//    function areRoutesEmpty(): bool;
 
     function getRoutesDirectoryPath(): string;
 

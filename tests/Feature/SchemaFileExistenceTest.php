@@ -10,7 +10,7 @@ it('creates a schema file when a new entity is created', function () {
     ]);
 
     expect(app(JsonApiManagerContract::class)->schemaExists($entity))->toBeTrue();
-    $this->assertFileExists(__DIR__.'/../../vendor/orchestra/testbench-core/laravel/app/JsonApi/TestApi/TestEntities/TestEntitySchema.generated.php');
+    $this->assertFileExists(base_path('app/JsonApi/TestApi/TestEntities/TestEntitySchema.generated.php'));
 });
 
 it('deletes the schema file when the entity is deleted', function () {
@@ -21,7 +21,7 @@ it('deletes the schema file when the entity is deleted', function () {
         ->delete();
 
     expect(app(JsonApiManagerContract::class)->schemaExists($entity))->toBeFalse();
-    $this->assertFileDoesNotExist(__DIR__.'/../../vendor/orchestra/testbench-core/laravel/app/JsonApi/TestApi/TestEntities/TestEntitySchema.generated.php');
+    $this->assertFileDoesNotExist(base_path('app/JsonApi/TestApi/TestEntities/TestEntitySchema.generated.php'));
 });
 
 it('throws an exception when generating a schema for entity which already exists', function () {

@@ -10,7 +10,7 @@ it('creates a request file when a new entity is created', function () {
     ]);
 
     expect(app(JsonApiManagerContract::class)->requestExists($entity))->toBeTrue();
-    $this->assertFileExists(__DIR__.'/../../vendor/orchestra/testbench-core/laravel/app/JsonApi/TestApi/TestEntities/TestEntityRequest.generated.php');
+    $this->assertFileExists(base_path('app/JsonApi/TestApi/TestEntities/TestEntityRequest.generated.php'));
 });
 
 it('deletes the request file when the entity is deleted', function () {
@@ -21,7 +21,7 @@ it('deletes the request file when the entity is deleted', function () {
         ->delete();
 
     expect(app(JsonApiManagerContract::class)->requestExists($entity))->toBeFalse();
-    $this->assertFileDoesNotExist(__DIR__.'/../../vendor/orchestra/testbench-core/laravel/app/JsonApi/TestApi/TestEntities/TestEntityRequest.generated.php');
+    $this->assertFileDoesNotExist(base_path('app/JsonApi/TestApi/TestEntities/TestEntityRequest.generated.php'));
 });
 
 it('throws an exception when generating a request for entity which already exists', function () {

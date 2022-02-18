@@ -10,7 +10,7 @@ it('creates a basic request when a new entity is created', function () {
 
     $this->assertFileEquals(
         expected: __DIR__.'/../generated/requests/BasicRequest.php',
-        actual: __DIR__.'/../../vendor/orchestra/testbench-core/laravel/app/JsonApi/TestApi/Articles/ArticleRequest.generated.php'
+        actual: base_path('app/JsonApi/TestApi/Articles/ArticleRequest.generated.php')
     );
 });
 
@@ -201,6 +201,6 @@ it('creates a request with attribute rules when a new entity with attributes is 
 
     $this->assertFileEquals(
         expected: __DIR__.'/../generated/requests/RequestWithRules.php',
-        actual: __DIR__.'/../../vendor/orchestra/testbench-core/laravel/app/JsonApi/TestApi/Pages/PageRequest.generated.php'
+        actual: base_path('app/JsonApi/TestApi/Pages/PageRequest.generated.php')
     );
 });

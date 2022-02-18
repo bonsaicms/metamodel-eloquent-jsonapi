@@ -87,6 +87,7 @@ class TestCase extends Orchestra
                 'classSuffix' => 'CustomRequestClassSuffix',
             ],
             'routes' => [
+                'canBeEmpty' => false,
                 'folder' => base_path('routes-custom'),
                 'file' => 'api-custom.generated.php',
                 'dependencies' => [

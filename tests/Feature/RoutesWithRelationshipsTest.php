@@ -30,7 +30,7 @@ it('creates routes for two entities with oneToOne relationships', function () {
 
     $this->assertFileEquals(
         expected: __DIR__.'/../generated/routes/twoEntitiesWithOneToOneRelationship.php',
-        actual: __DIR__.'/../../vendor/orchestra/testbench-core/laravel/routes-custom/api-custom.generated.php'
+        actual: base_path('routes-custom/api-custom.generated.php')
     );
 });
 
@@ -47,7 +47,7 @@ it('creates routes for two entities with oneToMany relationships', function () {
 
     $this->assertFileEquals(
         expected: __DIR__.'/../generated/routes/twoEntitiesWithOneToManyRelationship.php',
-        actual: __DIR__.'/../../vendor/orchestra/testbench-core/laravel/routes-custom/api-custom.generated.php'
+        actual: base_path('routes-custom/api-custom.generated.php')
     );
 });
 
@@ -66,6 +66,6 @@ it('creates routes for two entities with manyToMany relationships', function () 
 
     $this->assertFileEquals(
         expected: __DIR__.'/../generated/routes/twoEntitiesWithManyToManyRelationship.php',
-        actual: __DIR__.'/../../vendor/orchestra/testbench-core/laravel/routes-custom/api-custom.generated.php'
+        actual: base_path('routes-custom/api-custom.generated.php')
     );
 });

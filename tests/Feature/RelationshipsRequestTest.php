@@ -30,11 +30,11 @@ it('creates a requests for two entities in oneToOne relationship with correspond
 
     $this->assertFileEquals(
         expected: __DIR__.'/../generated/requests/OneToOneBlueDogRequest.php',
-        actual: __DIR__.'/../../vendor/orchestra/testbench-core/laravel/app/JsonApi/TestApi/BlueDogs/BlueDogRequest.generated.php'
+        actual: base_path('app/JsonApi/TestApi/BlueDogs/BlueDogRequest.generated.php')
     );
     $this->assertFileEquals(
         expected: __DIR__.'/../generated/requests/OneToOneRedCatRequest.php',
-        actual: __DIR__.'/../../vendor/orchestra/testbench-core/laravel/app/JsonApi/TestApi/RedCats/RedCatRequest.generated.php'
+        actual: base_path('app/JsonApi/TestApi/RedCats/RedCatRequest.generated.php')
     );
 });
 
@@ -51,11 +51,11 @@ it('creates a requests for two entities in oneToMany relationship with correspon
 
     $this->assertFileEquals(
         expected: __DIR__.'/../generated/requests/OneToManyBlueDogRequest.php',
-        actual: __DIR__.'/../../vendor/orchestra/testbench-core/laravel/app/JsonApi/TestApi/BlueDogs/BlueDogRequest.generated.php'
+        actual: base_path('app/JsonApi/TestApi/BlueDogs/BlueDogRequest.generated.php')
     );
     $this->assertFileEquals(
         expected: __DIR__.'/../generated/requests/OneToManyRedCatRequest.php',
-        actual: __DIR__.'/../../vendor/orchestra/testbench-core/laravel/app/JsonApi/TestApi/RedCats/RedCatRequest.generated.php'
+        actual: base_path('app/JsonApi/TestApi/RedCats/RedCatRequest.generated.php')
     );
 });
 
@@ -74,10 +74,10 @@ it('creates a requests for two entities in manyToMany relationship with correspo
 
     $this->assertFileEquals(
         expected: __DIR__.'/../generated/requests/ManyToManyBlueDogRequest.php',
-        actual: __DIR__.'/../../vendor/orchestra/testbench-core/laravel/app/JsonApi/TestApi/BlueDogs/BlueDogRequest.generated.php'
+        actual: base_path('app/JsonApi/TestApi/BlueDogs/BlueDogRequest.generated.php')
     );
     $this->assertFileEquals(
         expected: __DIR__.'/../generated/requests/ManyToManyRedCatRequest.php',
-        actual: __DIR__.'/../../vendor/orchestra/testbench-core/laravel/app/JsonApi/TestApi/RedCats/RedCatRequest.generated.php'
+        actual: base_path('app/JsonApi/TestApi/RedCats/RedCatRequest.generated.php')
     );
 });

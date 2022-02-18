@@ -8,7 +8,7 @@ it('generates a skeleton server file even though no entities exist', function ()
 
     $this->assertFileEquals(
         expected: __DIR__.'/../generated/server/Skeleton.php',
-        actual: __DIR__.'/../../vendor/orchestra/testbench-core/laravel/app/JsonApi/TestApi/TestServer.generated.php'
+        actual: base_path('app/JsonApi/TestApi/TestServer.generated.php')
     );
 });
 
@@ -25,7 +25,7 @@ it('generates a server file with schemas', function () {
 
     $this->assertFileEquals(
         expected: __DIR__.'/../generated/server/WithSchemas.php',
-        actual: __DIR__.'/../../vendor/orchestra/testbench-core/laravel/app/JsonApi/TestApi/TestServer.generated.php'
+        actual: base_path('app/JsonApi/TestApi/TestServer.generated.php')
     );
 });
 
@@ -42,6 +42,6 @@ it('generates a skeleton server file when all entities were deleted', function (
 
     $this->assertFileEquals(
         expected: __DIR__.'/../generated/server/Skeleton.php',
-        actual: __DIR__.'/../../vendor/orchestra/testbench-core/laravel/app/JsonApi/TestApi/TestServer.generated.php'
+        actual: base_path('app/JsonApi/TestApi/TestServer.generated.php')
     );
 });

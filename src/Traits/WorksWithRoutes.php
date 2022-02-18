@@ -17,21 +17,25 @@ use BonsaiCms\MetamodelEloquentJsonApi\Exceptions\RoutesAlreadyExistsException;
 
 trait WorksWithRoutes
 {
-    public function deleteRoutes(): self
+    public function deleteRoutes(bool $force = false): self
     {
         if ($this->routesExist()) {
             File::delete(
                 $this->getRoutesFilePath()
             );
+
+            if (!$force && Config::get('bonsaicms-metamodel-eloquent-jsonapi.generate.routes.canBeEmpty')) {
+                $this->generateEmptyRoutes();
+            }
         }
 
         return $this;
     }
 
-    public function regenerateRoutes(): self
+    public function regenerateRoutes(Collection $forEntities = null, bool $force = false): self
     {
-        $this->deleteRoutes();
-        $this->generateRoutes();
+        $this->deleteRoutes(true);
+        $this->generateRoutes($forEntities, $force);
 
         return $this;
     }
@@ -39,29 +43,39 @@ trait WorksWithRoutes
     /**
      * @throws RoutesAlreadyExistsException
      */
-    public function generateRoutes(): self
+    public function generateRoutes(Collection $forEntities = null, bool $force = false): self
     {
         if ($this->routesExist()) {
             throw new RoutesAlreadyExistsException();
         }
 
-        if ($this->shouldGenerateRoutes()) {
+        if ($this->shouldGenerateRoutes() || $force) {
             File::ensureDirectoryExists(
                 $this->getRoutesDirectoryPath()
             );
 
             File::put(
                 path: $this->getRoutesFilePath(),
-                contents: $this->getRoutesContents()
+                contents: $this->getRoutesContents($forEntities)
             );
         }
 
         return $this;
     }
 
+    /**
+     * @throws RoutesAlreadyExistsException
+     */
+    public function generateEmptyRoutes(): self
+    {
+        return $this->generateRoutes(collect([]));
+    }
+
     public function shouldGenerateRoutes(): bool
     {
-        return Entity::count() > 0;
+        return
+            Config::get('bonsaicms-metamodel-eloquent-jsonapi.generate.routes.canBeEmpty') ||
+            (Entity::count() > 0);
     }
 
     public function routesExist(): bool
@@ -84,22 +98,26 @@ trait WorksWithRoutes
             Config::get('bonsaicms-metamodel-eloquent-jsonapi.generate.routes.file');
     }
 
-    public function getRoutesContents(): string
+    public function getRoutesContents(Collection $forEntities = null): string
     {
         return Stub::make('routes/file', [
-            'dependencies' => $this->resolveRoutesDependencies(),
-            'comment' => $this->resolveRoutesComment(),
-            'server' => $this->resolveRoutesServer(),
+            'dependencies' => $this->resolveRoutesDependencies($forEntities),
+            'comment' => $this->resolveRoutesComment($forEntities),
+            'server' => $this->resolveRoutesServer($forEntities),
         ]);
     }
 
-    protected function resolveRoutesDependencies(): string
+    protected function resolveRoutesDependencies(Collection $forEntities = null): string
     {
         $dependencies = new PhpDependenciesCollection(
             Config::get('bonsaicms-metamodel-eloquent-jsonapi.generate.routes.dependencies')
         );
 
         if (Entity::query()
+            // TODO: DRY
+            ->when($forEntities !== null, function ($query) use ($forEntities) {
+                $query->whereIn((new Entity)->getKeyName(), $forEntities->map->getKey());
+            })
             ->has('leftRelationships')
             ->orHas('rightRelationships')
             ->exists()) {
@@ -116,17 +134,17 @@ trait WorksWithRoutes
         return Config::get('bonsaicms-metamodel-eloquent-jsonapi.generate.routes.namespace');
     }
 
-    protected function resolveRoutesComment(): string
+    protected function resolveRoutesComment(Collection $forEntities = null): string
     {
         return Stub::make('routes/comment');
     }
 
-    protected function resolveRoutesServer(): string
+    protected function resolveRoutesServer(Collection $forEntities = null): string
     {
         return app(Pipeline::class)
             ->send(
                 Stub::make('routes/server', [
-                    'routes' => $this->resolveRoutesDefinitions(),
+                    'routes' => $this->resolveRoutesDefinitions($forEntities),
                 ])
             )
             ->through([
@@ -135,11 +153,15 @@ trait WorksWithRoutes
             ->thenReturn();
     }
 
-    protected function resolveRoutesDefinitions(): string
+    protected function resolveRoutesDefinitions(Collection $forEntities = null): string
     {
         return app(Pipeline::class)
             ->send(
                 Entity::query()
+                    // TODO: DRY
+                    ->when($forEntities !== null, function ($query) use ($forEntities) {
+                        $query->whereIn((new Entity)->getKeyName(), $forEntities->map->getKey());
+                    })
                     ->with([
                         'attributes',
                         'leftRelationships',
