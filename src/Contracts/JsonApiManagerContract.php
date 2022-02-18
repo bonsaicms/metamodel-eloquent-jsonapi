@@ -67,6 +67,7 @@ interface JsonApiManagerContract
      * @throws RoutesAlreadyExistsException
      */
     // TODO: testy
+    // TODO: spravit na to command ? (alebo to bude sucast existujuceho commandu?) napr. --empty
     public function generateEmptyRoutes(): self;
 
     function routesExist(): bool;
