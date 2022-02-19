@@ -4,7 +4,7 @@ namespace {{ namespace }};
 
 {{ dependencies }}
 
-class {{ className }} extends {{ parentModel }}
+class {{ className }} extends {{ parentClass }}
 {
     {{ properties|indentTabs(1) }}
     {{ methods|indentTabs(1) }}

@@ -29,11 +29,11 @@ it('creates a requests for two entities in oneToOne relationship with correspond
         ]);
 
     $this->assertFileEquals(
-        expected: __DIR__.'/../generated/requests/OneToOneBlueDogRequest.php',
+        expected: generated_path('requests/OneToOneBlueDogRequest.php'),
         actual: base_path('app/JsonApi/TestApi/BlueDogs/BlueDogRequest.generated.php')
     );
     $this->assertFileEquals(
-        expected: __DIR__.'/../generated/requests/OneToOneRedCatRequest.php',
+        expected: generated_path('requests/OneToOneRedCatRequest.php'),
         actual: base_path('app/JsonApi/TestApi/RedCats/RedCatRequest.generated.php')
     );
 });
@@ -50,11 +50,11 @@ it('creates a requests for two entities in oneToMany relationship with correspon
         ]);
 
     $this->assertFileEquals(
-        expected: __DIR__.'/../generated/requests/OneToManyBlueDogRequest.php',
+        expected: generated_path('requests/OneToManyBlueDogRequest.php'),
         actual: base_path('app/JsonApi/TestApi/BlueDogs/BlueDogRequest.generated.php')
     );
     $this->assertFileEquals(
-        expected: __DIR__.'/../generated/requests/OneToManyRedCatRequest.php',
+        expected: generated_path('requests/OneToManyRedCatRequest.php'),
         actual: base_path('app/JsonApi/TestApi/RedCats/RedCatRequest.generated.php')
     );
 });
@@ -73,11 +73,11 @@ it('creates a requests for two entities in manyToMany relationship with correspo
         ]);
 
     $this->assertFileEquals(
-        expected: __DIR__.'/../generated/requests/ManyToManyBlueDogRequest.php',
+        expected: generated_path('requests/ManyToManyBlueDogRequest.php'),
         actual: base_path('app/JsonApi/TestApi/BlueDogs/BlueDogRequest.generated.php')
     );
     $this->assertFileEquals(
-        expected: __DIR__.'/../generated/requests/ManyToManyRedCatRequest.php',
+        expected: generated_path('requests/ManyToManyRedCatRequest.php'),
         actual: base_path('app/JsonApi/TestApi/RedCats/RedCatRequest.generated.php')
     );
 });

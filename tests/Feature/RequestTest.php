@@ -9,7 +9,7 @@ it('creates a basic request when a new entity is created', function () {
     ]);
 
     $this->assertFileEquals(
-        expected: __DIR__.'/../generated/requests/BasicRequest.php',
+        expected: generated_path('requests/BasicRequest.php'),
         actual: base_path('app/JsonApi/TestApi/Articles/ArticleRequest.generated.php')
     );
 });
@@ -200,7 +200,7 @@ it('creates a request with attribute rules when a new entity with attributes is 
         ]);
 
     $this->assertFileEquals(
-        expected: __DIR__.'/../generated/requests/RequestWithRules.php',
+        expected: generated_path('requests/RequestWithRules.php'),
         actual: base_path('app/JsonApi/TestApi/Pages/PageRequest.generated.php')
     );
 });

@@ -56,6 +56,20 @@ class TestCase extends Orchestra
             'routesConfig' => [],
         ]);
         config()->set('bonsaicms-metamodel-eloquent', [
+            'generate' => [
+                'models' => [
+                    'folder' => app_path('Models'),
+                    'fileSuffix' => '.generated.php',
+                    'namespace' => 'TestApp\\Models',
+                    'parentClass' => 'Some\\Namespace\\ParentClass',
+                ],
+                'policies' => [
+                    'folder' => app_path('Policies'),
+                    'fileSuffix' => 'Policy.generated.php',
+                    'namespace' => 'TestApp\\Policies',
+                    'parentClass' => null,
+                ],
+            ],
             'bind' => [
                 'modelManager' => true,
             ],
@@ -100,25 +114,19 @@ class TestCase extends Orchestra
                     ],
                 ],
             ],
-            'generate' => [
-                'folder' => __DIR__.'/../vendor/orchestra/testbench-core/laravel/app/Models',
-                'modelFileSuffix' => '.generated.php',
-                'namespace' => 'TestApp\\Models',
-                'parentModel' => 'Some\\Namespace\\ParentModel',
-            ],
         ]);
         config()->set('bonsaicms-metamodel-eloquent-jsonapi.generate', [
             'schema' => [
                 'folder' => app_path('JsonApi/TestApi'),
                 'namespace' => app()->getNamespace().'JsonApi\\TestApi',
-                'parentModel' => \Testing\My\Custom\AbstractSchema::class,
+                'parentClass' => \Testing\My\Custom\AbstractSchema::class,
                 'fileSuffix' => 'Schema.generated.php',
                 'classSuffix' => 'CustomSchemaClassSuffix',
             ],
             'request' => [
                 'folder' => app_path('JsonApi/TestApi'),
                 'namespace' => app()->getNamespace().'JsonApi\\TestApi',
-                'parentModel' => \Testing\My\Custom\AbstractRequest::class,
+                'parentClass' => \Testing\My\Custom\AbstractRequest::class,
                 'fileSuffix' => 'Request.generated.php',
                 'classSuffix' => 'CustomRequestClassSuffix',
             ],

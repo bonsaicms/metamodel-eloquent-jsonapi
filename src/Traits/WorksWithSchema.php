@@ -87,7 +87,7 @@ trait WorksWithSchema
 
         // Global variables
         $stub->namespace = $this->resolveSchemaNamespace($entity);
-        $stub->parentModel = class_basename(Config::get('bonsaicms-metamodel-eloquent-jsonapi.generate.schema.parentModel'));
+        $stub->parentClass = class_basename(Config::get('bonsaicms-metamodel-eloquent-jsonapi.generate.schema.parentClass'));
         $stub->className = $this->resolveSchemaClassName($entity);
 
         // Dependencies
@@ -121,7 +121,7 @@ trait WorksWithSchema
         $dependencies = new PhpDependenciesCollection;
 
         $dependencies->push(
-            Config::get('bonsaicms-metamodel-eloquent-jsonapi.generate.schema.parentModel')
+            Config::get('bonsaicms-metamodel-eloquent-jsonapi.generate.schema.parentClass')
         );
 
         // Model

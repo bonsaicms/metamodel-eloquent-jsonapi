@@ -83,7 +83,7 @@ trait WorksWithRequest
 
         // Global variables
         $stub->namespace = $this->resolveRequestNamespace($entity);
-        $stub->parentModel = class_basename(Config::get('bonsaicms-metamodel-eloquent-jsonapi.generate.request.parentModel'));
+        $stub->parentClass = class_basename(Config::get('bonsaicms-metamodel-eloquent-jsonapi.generate.request.parentClass'));
         $stub->className = $this->resolveRequestClassName($entity);
 
         // Dependencies
@@ -117,7 +117,7 @@ trait WorksWithRequest
         $dependencies = new PhpDependenciesCollection;
 
         $dependencies->push(
-            Config::get('bonsaicms-metamodel-eloquent-jsonapi.generate.request.parentModel')
+            Config::get('bonsaicms-metamodel-eloquent-jsonapi.generate.request.parentClass')
         );
 
         $dependencies = $dependencies->merge(

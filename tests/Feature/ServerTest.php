@@ -7,7 +7,7 @@ it('generates a skeleton server file even though no entities exist', function ()
     app(JsonApiManagerContract::class)->generateServer();
 
     $this->assertFileEquals(
-        expected: __DIR__.'/../generated/server/Skeleton.php',
+        expected: generated_path('server/Skeleton.php'),
         actual: base_path('app/JsonApi/TestApi/TestServer.generated.php')
     );
 });
@@ -24,7 +24,7 @@ it('generates a server file with schemas', function () {
     ]);
 
     $this->assertFileEquals(
-        expected: __DIR__.'/../generated/server/WithSchemas.php',
+        expected: generated_path('server/WithSchemas.php'),
         actual: base_path('app/JsonApi/TestApi/TestServer.generated.php')
     );
 });
@@ -41,7 +41,7 @@ it('generates a skeleton server file when all entities were deleted', function (
     $entity3->delete();
 
     $this->assertFileEquals(
-        expected: __DIR__.'/../generated/server/Skeleton.php',
+        expected: generated_path('server/Skeleton.php'),
         actual: base_path('app/JsonApi/TestApi/TestServer.generated.php')
     );
 });

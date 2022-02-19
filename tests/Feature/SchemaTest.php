@@ -9,7 +9,7 @@ it('creates a basic schema when a new entity is created', function () {
     ]);
 
     $this->assertFileEquals(
-        expected: __DIR__.'/../generated/schemas/BasicSchema.php',
+        expected: generated_path('schemas/BasicSchema.php'),
         actual: base_path('app/JsonApi/TestApi/Articles/ArticleSchema.generated.php')
     );
 });
@@ -83,7 +83,7 @@ it('creates a schema with attributes when a new entity with attributes is create
         ]);
 
     $this->assertFileEquals(
-        expected: __DIR__.'/../generated/schemas/SchemaWithAttributes.php',
+        expected: generated_path('schemas/SchemaWithAttributes.php'),
         actual: base_path('app/JsonApi/TestApi/Pages/PageSchema.generated.php')
     );
 });

@@ -29,7 +29,7 @@ it('creates routes for two entities with oneToOne relationships', function () {
         ]);
 
     $this->assertFileEquals(
-        expected: __DIR__.'/../generated/routes/twoEntitiesWithOneToOneRelationship.php',
+        expected: generated_path('routes/twoEntitiesWithOneToOneRelationship.php'),
         actual: base_path('routes-custom/api-custom.generated.php')
     );
 });
@@ -46,7 +46,7 @@ it('creates routes for two entities with oneToMany relationships', function () {
         ]);
 
     $this->assertFileEquals(
-        expected: __DIR__.'/../generated/routes/twoEntitiesWithOneToManyRelationship.php',
+        expected: generated_path('routes/twoEntitiesWithOneToManyRelationship.php'),
         actual: base_path('routes-custom/api-custom.generated.php')
     );
 });
@@ -65,7 +65,7 @@ it('creates routes for two entities with manyToMany relationships', function () 
         ]);
 
     $this->assertFileEquals(
-        expected: __DIR__.'/../generated/routes/twoEntitiesWithManyToManyRelationship.php',
+        expected: generated_path('routes/twoEntitiesWithManyToManyRelationship.php'),
         actual: base_path('routes-custom/api-custom.generated.php')
     );
 });

@@ -29,11 +29,11 @@ it('creates schema files for two entities with oneToOne relationships', function
         ]);
 
     $this->assertFileEquals(
-        expected: __DIR__.'/../generated/schemas/OneToOneSchemaA.php',
+        expected: generated_path('schemas/OneToOneSchemaA.php'),
         actual: base_path('app/JsonApi/TestApi/BlueDogs/BlueDogSchema.generated.php')
     );
     $this->assertFileEquals(
-        expected: __DIR__.'/../generated/schemas/OneToOneSchemaB.php',
+        expected: generated_path('schemas/OneToOneSchemaB.php'),
         actual: base_path('app/JsonApi/TestApi/RedCats/RedCatSchema.generated.php')
     );
 });
@@ -50,11 +50,11 @@ it('creates schema files for two entities with oneToMany relationships', functio
         ]);
 
     $this->assertFileEquals(
-        expected: __DIR__.'/../generated/schemas/OneToManySchemaA.php',
+        expected: generated_path('schemas/OneToManySchemaA.php'),
         actual: base_path('app/JsonApi/TestApi/BlueDogs/BlueDogSchema.generated.php')
     );
     $this->assertFileEquals(
-        expected: __DIR__.'/../generated/schemas/OneToManySchemaB.php',
+        expected: generated_path('schemas/OneToManySchemaB.php'),
         actual: base_path('app/JsonApi/TestApi/RedCats/RedCatSchema.generated.php')
     );
 });
@@ -73,11 +73,11 @@ it('creates schema files for two entities with manyToMany relationships', functi
         ]);
 
     $this->assertFileEquals(
-        expected: __DIR__.'/../generated/schemas/ManyToManySchemaA.php',
+        expected: generated_path('schemas/ManyToManySchemaA.php'),
         actual: base_path('app/JsonApi/TestApi/BlueDogs/BlueDogSchema.generated.php')
     );
     $this->assertFileEquals(
-        expected: __DIR__.'/../generated/schemas/ManyToManySchemaB.php',
+        expected: generated_path('schemas/ManyToManySchemaB.php'),
         actual: base_path('app/JsonApi/TestApi/RedCats/RedCatSchema.generated.php')
     );
 });
