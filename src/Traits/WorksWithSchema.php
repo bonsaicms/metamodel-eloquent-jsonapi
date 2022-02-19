@@ -127,7 +127,7 @@ trait WorksWithSchema
         // Model
         // TODO: co ak je Config::get('bonsaicms-metamodel-eloquent.generate.namespace') prazdny string?
         $dependencies->push(
-            Config::get('bonsaicms-metamodel-eloquent.generate.namespace')
+            Config::get('bonsaicms-metamodel-eloquent.generate.models.namespace')
             .'\\'
             .$entity->name
         );
