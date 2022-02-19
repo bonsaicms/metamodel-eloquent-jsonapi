@@ -60,9 +60,45 @@ class TestCase extends Orchestra
                 'modelManager' => true,
             ],
             'observeModels' => [
-                'entity' => true,
-                'attribute' => true,
-                'relationship' => true,
+                'entity' => [
+                    'enabled' => true,
+                    'model' => [
+                        'created' => true,
+                        'updated' => true,
+                        'deleted' => true,
+                    ],
+                    'policy' => [
+                        'created' => true,
+                        'updated' => true,
+                        'deleted' => true,
+                    ],
+                ],
+                'attribute' => [
+                    'enabled' => true,
+                    'model' => [
+                        'created' => true,
+                        'updated' => true,
+                        'deleted' => true,
+                    ],
+                    'policy' => [
+                        'created' => true,
+                        'updated' => true,
+                        'deleted' => true,
+                    ],
+                ],
+                'relationship' => [
+                    'enabled' => true,
+                    'model' => [
+                        'created' => true,
+                        'updated' => true,
+                        'deleted' => true,
+                    ],
+                    'policy' => [
+                        'created' => true,
+                        'updated' => true,
+                        'deleted' => true,
+                    ],
+                ],
             ],
             'generate' => [
                 'folder' => __DIR__.'/../vendor/orchestra/testbench-core/laravel/app/Models',
