@@ -15,6 +15,7 @@ trait WorksWithSchema
 {
     use WorksWithSchemaAttributeFields;
     use WorksWithSchemaRelationshipFields;
+    use WorksWithSchemaRelationshipSortables;
 
     public function deleteSchema(Entity $entity): self
     {
@@ -152,7 +153,9 @@ trait WorksWithSchema
             $this->resolveSchemaRelationshipFieldsDependencies($entity)
         );
 
-        // TODO: other dependencies
+        $dependencies = $dependencies->merge(
+            $this->resolveSchemaRelationshipSortablesDependencies($entity)
+        );
 
         return $dependencies->toPhpUsesString(
             $this->resolveSchemaNamespace($entity)
@@ -177,6 +180,7 @@ trait WorksWithSchema
     {
         return Stub::make('schema/methods', [
             'fieldsMethod' => $this->resolveSchemaFieldsMethod($entity),
+            'sortablesMethod' => $this->resolveSchemaSortablesMethod($entity),
             'filtersMethod' => $this->resolveSchemaFiltersMethod($entity),
             'paginationMethod' => $this->resolveSchemaPaginationMethod($entity),
         ]);

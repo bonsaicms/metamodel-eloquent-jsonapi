@@ -6,9 +6,11 @@ use TestApp\Models\RedCat;
 use Testing\My\Custom\AbstractSchema;
 use LaravelJsonApi\Eloquent\Fields\ID;
 use LaravelJsonApi\Eloquent\Fields\DateTime;
+use LaravelJsonApi\Contracts\Schema\Sortable;
 use LaravelJsonApi\Eloquent\Filters\WhereIdIn;
 use LaravelJsonApi\Eloquent\Contracts\Paginator;
 use LaravelJsonApi\Eloquent\Filters\WhereIdNotIn;
+use LaravelJsonApi\Eloquent\Sorting\SortCountable;
 use LaravelJsonApi\Eloquent\Pagination\PagePagination;
 use LaravelJsonApi\Eloquent\Fields\Relations\BelongsToMany;
 
@@ -33,6 +35,20 @@ class RedCatCustomSchemaClassSuffix extends AbstractSchema
             DateTime::make('createdAt')->sortable()->readOnly(),
             DateTime::make('updatedAt')->sortable()->readOnly(),
             BelongsToMany::make('blueDogs')->type('blue-dogs')->canCount(),
+        ];
+    }
+
+    /**
+     * Get additional sortables.
+     *
+     * Get sortables that are not the resource ID or a resource attribute.
+     *
+     * @return Sortable[]|iterable
+     */
+    public function sortables(): iterable
+    {
+        return [
+            SortCountable::make($this, 'blueDogs'),
         ];
     }
 

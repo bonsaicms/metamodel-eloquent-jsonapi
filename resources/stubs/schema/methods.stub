@@ -1,3 +1,4 @@
 {{ fieldsMethod }}
+{{ sortablesMethod }}
 {{ filtersMethod }}
 {{ paginationMethod }}
