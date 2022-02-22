@@ -5,14 +5,14 @@ return [
         'schema' => [
             'folder' => app_path('JsonApi/V1'),
             'namespace' => app()->getNamespace().'JsonApi\\V1',
-            'parentClass' => LaravelJsonApi\Eloquent\Schema::class,
+            'parentClass' => \LaravelJsonApi\Eloquent\Schema::class,
             'fileSuffix' => 'Schema.php',
             'classSuffix' => 'Schema',
         ],
         'request' => [
             'folder' => app_path('JsonApi/V1'),
             'namespace' => app()->getNamespace().'JsonApi\\V1',
-            'parentClass' => LaravelJsonApi\Laravel\Http\Requests\ResourceRequest::class,
+            'parentClass' => \LaravelJsonApi\Laravel\Http\Requests\ResourceRequest::class,
             'fileSuffix' => 'Request.php',
             'classSuffix' => 'Request',
         ],
