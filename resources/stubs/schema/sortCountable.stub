@@ -1,1 +1,1 @@
-SortCountable::make($this, '{{ field }}'),
+SortCountable::make($this, '{[ field ]}'),

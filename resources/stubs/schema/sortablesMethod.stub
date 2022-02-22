@@ -8,6 +8,6 @@
 public function sortables(): iterable
 {
     return [
-        {{ sortables|indentTabs(2) }}
+        {[ sortables|indentTabs(2) ]}
     ];
 }

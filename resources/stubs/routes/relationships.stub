@@ -1,3 +1,3 @@
 ->relationships(function (Relationships $relationships) {
-    {{ relationships|indentTabs(1) }}
+    {[ relationships|indentTabs(1) ]}
 })

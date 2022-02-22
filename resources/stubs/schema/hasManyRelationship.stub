@@ -1,1 +1,1 @@
-HasMany::make('{{ field }}')->type('{{ type }}')->canCount(),
+HasMany::make('{[ field ]}')->type('{[ type ]}')->canCount(),

@@ -1,1 +1,1 @@
-$relationships->hasMany('{{ relationshipName }}');
+$relationships->hasMany('{[ relationshipName ]}');

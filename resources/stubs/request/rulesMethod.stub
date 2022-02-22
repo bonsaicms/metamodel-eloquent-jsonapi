@@ -7,9 +7,9 @@ public function rules(): array
 {
     return [
         // Attributes
-        {{ attributesRules|indentTabs(2) }}
+        {[ attributesRules|indentTabs(2) ]}
 
         // Relationships
-        {{ relationshipsRules|indentTabs(2) }}
+        {[ relationshipsRules|indentTabs(2) ]}
     ];
 }

@@ -3,4 +3,4 @@
  *
  * @var string
  */
-public static string $model = {{ eloquentModel }}::class;
+public static string $model = {[ eloquentModel ]}::class;

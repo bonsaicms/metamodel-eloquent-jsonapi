@@ -1,11 +1,11 @@
 <?php
 
-namespace {{ namespace }};
+namespace {[ namespace ]};
 
-{{ dependencies }}
+{[ dependencies ]}
 
-class {{ className }} extends {{ parentClass }}
+class {[ className ]} extends {[ parentClass ]}
 {
-    {{ properties|indentTabs(1) }}
-    {{ methods|indentTabs(1) }}
+    {[ properties|indentTabs(1) ]}
+    {[ methods|indentTabs(1) ]}
 }

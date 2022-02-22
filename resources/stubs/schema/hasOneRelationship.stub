@@ -1,1 +1,1 @@
-HasOne::make('{{ field }}')->type('{{ type }}'),
+HasOne::make('{[ field ]}')->type('{[ type ]}'),

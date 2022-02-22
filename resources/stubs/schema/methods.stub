@@ -1,4 +1,4 @@
-{{ fieldsMethod }}
-{{ sortablesMethod }}
-{{ filtersMethod }}
-{{ paginationMethod }}
+{[ fieldsMethod ]}
+{[ sortablesMethod ]}
+{[ filtersMethod ]}
+{[ paginationMethod ]}

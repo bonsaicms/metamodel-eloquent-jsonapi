@@ -1,1 +1,1 @@
-BelongsTo::make('{{ field }}')->type('{{ type }}'),
+BelongsTo::make('{[ field ]}')->type('{[ type ]}'),
