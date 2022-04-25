@@ -119,7 +119,9 @@ trait WorksWithSchema
 
     protected function resolveSchemaDependencies(Entity $entity): string
     {
-        $dependencies = new PhpDependenciesCollection;
+        $dependencies = new PhpDependenciesCollection(
+            Config::get('bonsaicms-metamodel-eloquent-jsonapi.generate.schema.dependencies')
+        );
 
         $dependencies->push(
             Config::get('bonsaicms-metamodel-eloquent-jsonapi.generate.schema.parentClass')
@@ -132,18 +134,6 @@ trait WorksWithSchema
             .'\\'
             .$entity->name
         );
-
-        // JSON:API Fields
-        $dependencies->push('LaravelJsonApi\\Eloquent\\Fields\\ID');
-        $dependencies->push('LaravelJsonApi\\Eloquent\\Fields\\DateTime');
-
-        // JSON:API Filters
-        $dependencies->push('LaravelJsonApi\\Eloquent\\Filters\\WhereIdIn');
-        $dependencies->push('LaravelJsonApi\\Eloquent\\Filters\\WhereIdNotIn');
-
-        // JSON:API Pagination
-        $dependencies->push('LaravelJsonApi\\Eloquent\\Contracts\\Paginator');
-        $dependencies->push('LaravelJsonApi\\Eloquent\\Pagination\\PagePagination');
 
         $dependencies = $dependencies->merge(
             $this->resolveSchemaAttributeFieldsDependencies($entity)

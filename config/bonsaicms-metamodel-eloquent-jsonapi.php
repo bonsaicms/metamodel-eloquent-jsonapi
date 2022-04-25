@@ -8,6 +8,14 @@ return [
             'parentClass' => \LaravelJsonApi\Eloquent\Schema::class,
             'fileSuffix' => 'Schema.php',
             'classSuffix' => 'Schema',
+            'dependencies' => [
+                \LaravelJsonApi\Eloquent\Fields\ID::class,
+                \LaravelJsonApi\Eloquent\Fields\DateTime::class,
+                \LaravelJsonApi\Eloquent\Filters\WhereIdIn::class,
+                \LaravelJsonApi\Eloquent\Filters\WhereIdNotIn::class,
+                \LaravelJsonApi\Eloquent\Contracts\Paginator::class,
+                \LaravelJsonApi\Eloquent\Pagination\PagePagination::class,
+            ],
         ],
         'request' => [
             'folder' => app_path('JsonApi/V1'),

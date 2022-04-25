@@ -122,6 +122,14 @@ class TestCase extends Orchestra
                 'parentClass' => \Testing\My\Custom\AbstractSchema::class,
                 'fileSuffix' => 'Schema.generated.php',
                 'classSuffix' => 'CustomSchemaClassSuffix',
+                'dependencies' => [
+                    \LaravelJsonApi\Eloquent\Fields\ID::class,
+                    \LaravelJsonApi\Eloquent\Fields\DateTime::class,
+                    \LaravelJsonApi\Eloquent\Filters\WhereIdIn::class,
+                    \LaravelJsonApi\Eloquent\Filters\WhereIdNotIn::class,
+                    \LaravelJsonApi\Eloquent\Contracts\Paginator::class,
+                    \LaravelJsonApi\Eloquent\Pagination\PagePagination::class,
+                ],
             ],
             'request' => [
                 'folder' => app_path('JsonApi/TestApi'),
